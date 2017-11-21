@@ -1,0 +1,5 @@
+package InteligenciaNegocio.ImplementacionETL.Dominio;
+
+public class Tiempo {
+
+}

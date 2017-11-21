@@ -1,0 +1,22 @@
+package InteligenciaNegocio.ImplementacionETL;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import InteligenciaNegocio.ImplementacionETL.Controlador.Controlador;
+
+public class Principal 
+{
+    public static void main( String[] args )
+    {
+    	Controlador controlador = Controlador.getUnicaInstancia();
+
+        JSONObject minero1 = controlador.leerJSON("client0_rca.json");
+        controlador.isJSONValido(minero1);
+        String nombre = minero1.getString("miner_id");
+        System.out.println(nombre);
+        System.out.println(minero1.getString("devices"));
+        JSONArray dispositivosMinero1 = controlador.leerVariosJSONDesdeCadenaJSON(minero1.getString("devices"));
+        System.out.println(dispositivosMinero1.getJSONObject(0).get("model"));
+    }
+}

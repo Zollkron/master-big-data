@@ -1,0 +1,28 @@
+1.- > nrow(titanic)
+[1] 1043
+2.- > sum(titanic$sobreviviente == 1)
+[1] 425
+3.- > (sum(titanic$sobreviviente == 1) / nrow(titanic)) * 100
+[1] 40.74784
+4.- > sum(titanic$clase == "primera")
+[1] 282
+5.- > sum(titanic$sexo=="hombre" & titanic$edad < 12)
+[1] 49
+6.- > fabs_clases <- table(titanic$clase)
+> fabs_clases/sum(fabs_clases)
+
+  primera   segunda   tercera 
+0.2703739 0.2502397 0.4793864 
+7.- > frels_clases <- fabs_clases/sum(fabs_clases)
+> barplot(frels_clases)
+8.- > niños <- sum(titanic$edad < 12)
+> adolescentes <- sum(titanic$edad >= 12 & titanic$edad<18)
+> adultos <- sum(titanic$edad >= 18 & titanic$edad<65)
+> ancianos <- sum(titanic$edad >= 65)
+> barplot(cbind(niños,adolescentes,adultos,ancianos))
+9.- > mean(titanic$edad)
+[1] 29.8132
+> median(titanic$edad)
+[1] 28
+10.- > mean(titanic$tarifa)
+[1] 36.60302

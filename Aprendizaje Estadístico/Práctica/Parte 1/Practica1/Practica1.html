@@ -1,0 +1,250 @@
+<html>
+
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Práctica 1</title>
+</head>
+
+<body>
+
+<p>Código y resultados de la práctica 1</p>
+
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">titanic</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">read.csv2</span><span class="hl std">(</span><span class="hl str">&quot;C:/Dropbox/RStudioTrabajo/titanic_es.csv&quot;</span><span class="hl std">)</span>
+
+<span class="hl kwd">nrow</span><span class="hl std">(titanic)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 1043
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sobreviviente</span> <span class="hl opt">==</span> <span class="hl num">1</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 425
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">(</span><span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sobreviviente</span> <span class="hl opt">==</span> <span class="hl num">1</span><span class="hl std">)</span> <span class="hl opt">/</span> <span class="hl kwd">nrow</span><span class="hl std">(titanic))</span> <span class="hl opt">*</span> <span class="hl num">100</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 40.74784
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">clase</span> <span class="hl opt">==</span> <span class="hl str">&quot;primera&quot;</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 282
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sexo</span><span class="hl opt">==</span><span class="hl str">&quot;hombre&quot;</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">edad</span> <span class="hl opt">&lt;</span> <span class="hl num">12</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 49
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">fabs_clases</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">table</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">clase)</span>
+<span class="hl std">fabs_clases</span><span class="hl opt">/</span><span class="hl kwd">sum</span><span class="hl std">(fabs_clases)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## 
+##   primera   segunda   tercera 
+## 0.2703739 0.2502397 0.4793864
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">frels_clases</span> <span class="hl kwb">&lt;-</span> <span class="hl std">fabs_clases</span><span class="hl opt">/</span><span class="hl kwd">sum</span><span class="hl std">(fabs_clases)</span>
+<span class="hl kwd">barplot</span><span class="hl std">(frels_clases)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl std">niños</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad</span> <span class="hl opt">&lt;</span> <span class="hl num">12</span><span class="hl std">)</span>
+<span class="hl std">adolescentes</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad</span> <span class="hl opt">&gt;=</span> <span class="hl num">12</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">edad</span><span class="hl opt">&lt;</span><span class="hl num">18</span><span class="hl std">)</span>
+<span class="hl std">adultos</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad</span> <span class="hl opt">&gt;=</span> <span class="hl num">18</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">edad</span><span class="hl opt">&lt;</span><span class="hl num">65</span><span class="hl std">)</span>
+<span class="hl std">ancianos</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad</span> <span class="hl opt">&gt;=</span> <span class="hl num">65</span><span class="hl std">)</span>
+<span class="hl kwd">barplot</span><span class="hl std">(</span><span class="hl kwd">cbind</span><span class="hl std">(niños,adolescentes,adultos,ancianos))</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-1-2.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl kwd">mean</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 29.8132
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">median</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 28
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">mean</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">tarifa)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 36.60302
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">mujeres</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sexo</span> <span class="hl opt">==</span> <span class="hl str">&quot;mujer&quot;</span><span class="hl std">)</span>
+<span class="hl std">mujeres_supervivientes</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sobreviviente</span> <span class="hl opt">==</span> <span class="hl num">1</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">sexo</span> <span class="hl opt">==</span> <span class="hl str">&quot;mujer&quot;</span><span class="hl std">)</span>
+<span class="hl std">(mujeres_supervivientes</span><span class="hl opt">/</span><span class="hl std">mujeres)</span><span class="hl opt">*</span><span class="hl num">100</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 75.12953
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">hombres</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sexo</span> <span class="hl opt">==</span> <span class="hl str">&quot;hombre&quot;</span><span class="hl std">)</span>
+<span class="hl std">hombres_supervivientes</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sobreviviente</span> <span class="hl opt">==</span> <span class="hl num">1</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">sexo</span> <span class="hl opt">==</span> <span class="hl str">&quot;hombre&quot;</span><span class="hl std">)</span>
+<span class="hl std">(hombres_supervivientes</span><span class="hl opt">/</span><span class="hl std">hombres)</span><span class="hl opt">*</span><span class="hl num">100</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 20.54795
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">niños_supervivientes</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sobreviviente</span> <span class="hl opt">==</span> <span class="hl num">1</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">edad</span> <span class="hl opt">&lt;</span> <span class="hl num">12</span><span class="hl std">)</span>
+<span class="hl std">(niños_supervivientes</span><span class="hl opt">/</span><span class="hl std">niños)</span><span class="hl opt">*</span><span class="hl num">100</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 56.04396
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">hombres_supervivientes_primera</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sobreviviente</span> <span class="hl opt">==</span> <span class="hl num">1</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">sexo</span> <span class="hl opt">==</span> <span class="hl str">&quot;hombre&quot;</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">clase</span> <span class="hl opt">==</span> <span class="hl str">&quot;primera&quot;</span><span class="hl std">)</span>
+<span class="hl std">hombres_primera</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sexo</span> <span class="hl opt">==</span> <span class="hl str">&quot;hombre&quot;</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">clase</span> <span class="hl opt">==</span> <span class="hl str">&quot;primera&quot;</span><span class="hl std">)</span>
+<span class="hl std">tasa_super_hom_prim</span> <span class="hl kwb">&lt;-</span> <span class="hl std">(hombres_supervivientes_primera</span><span class="hl opt">/</span><span class="hl std">hombres_primera)</span><span class="hl opt">*</span><span class="hl num">100</span>
+<span class="hl std">tasa_super_hom_prim</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 35.09934
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">hombres_supervivientes_segunda</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sobreviviente</span> <span class="hl opt">==</span> <span class="hl num">1</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">sexo</span> <span class="hl opt">==</span> <span class="hl str">&quot;hombre&quot;</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">clase</span> <span class="hl opt">==</span> <span class="hl str">&quot;segunda&quot;</span><span class="hl std">)</span>
+<span class="hl std">hombres_segunda</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">sum</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">sexo</span> <span class="hl opt">==</span> <span class="hl str">&quot;hombre&quot;</span> <span class="hl opt">&amp;</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">clase</span> <span class="hl opt">==</span> <span class="hl str">&quot;segunda&quot;</span><span class="hl std">)</span>
+<span class="hl std">tasa_super_hom_seg</span> <span class="hl kwb">&lt;-</span> <span class="hl std">(hombres_supervivientes_primera</span><span class="hl opt">/</span><span class="hl std">hombres_segunda)</span><span class="hl opt">*</span><span class="hl num">100</span>
+<span class="hl std">tasa_super_hom_seg</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 33.5443
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwa">if</span><span class="hl std">(tasa_super_hom_prim</span> <span class="hl opt">&gt;</span> <span class="hl std">tasa_super_hom_seg)</span>
+  <span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;La tasa de supervivientes de hombres en primera clase es superior en un&quot;</span><span class="hl std">,(tasa_super_hom_prim</span> <span class="hl opt">-</span> <span class="hl std">tasa_super_hom_seg),</span><span class="hl str">&quot;% más.&quot;</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;La tasa de supervivientes de hombres en primera clase es superior en un 1.55503395087602 % más.&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">boxplot</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad</span> <span class="hl opt">~</span> <span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">clase)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-1-3.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl str">&quot;Se puede observar que la mediana de edad es más baja conforme la clase del billete es más asequible. También se observan más datos atípicos.&quot;</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Se puede observar que la mediana de edad es más baja conforme la clase del billete es más asequible. También se observan más datos atípicos.&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">tapply</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad, titanic</span><span class="hl opt">$</span><span class="hl std">clase, mean)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##  primera  segunda  tercera 
+## 39.08304 29.50670 24.74500
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">tapply</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad, titanic</span><span class="hl opt">$</span><span class="hl std">clase, var)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##  primera  segunda  tercera 
+## 211.2852 186.0122 140.7283
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">pcinc</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">by</span> <span class="hl std">=</span> <span class="hl num">0.05</span><span class="hl std">)</span>
+<span class="hl kwd">quantile</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad, pcinc)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##      0%      5%     10%     15%     20%     25%     30%     35%     40% 
+##  0.1667  5.0000 14.0000 18.0000 19.0000 21.0000 22.0000 24.0000 25.0000 
+##     45%     50%     55%     60%     65%     70%     75%     80%     85% 
+## 26.0000 28.0000 30.0000 31.0000 33.0000 36.0000 39.0000 42.0000 45.0000 
+##     90%     95%    100% 
+## 50.0000 56.0000 80.0000
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">max</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 80
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl str">&quot;Recibirían asistencia a partir de los 56 años. El pasajero de mayor edad tenía 80 años.&quot;</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Recibirían asistencia a partir de los 56 años. El pasajero de mayor edad tenía 80 años.&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">hist</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">tarifa[titanic</span><span class="hl opt">$</span><span class="hl std">clase</span><span class="hl opt">==</span><span class="hl str">&quot;primera&quot;</span><span class="hl std">])</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-1-4.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl com"># Como la función para calcular la moda no existe en R nos creamos una personalizada.</span>
+<span class="hl std">getmode</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">v</span><span class="hl std">) {</span>
+  <span class="hl std">uniqv</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">unique</span><span class="hl std">(v)</span>
+  <span class="hl kwd">paste</span><span class="hl std">(</span><span class="hl str">&quot;La moda es&quot;</span><span class="hl std">, uniqv[</span><span class="hl kwd">which.max</span><span class="hl std">(</span><span class="hl kwd">tabulate</span><span class="hl std">(</span><span class="hl kwd">match</span><span class="hl std">(v, uniqv)))],</span> <span class="hl str">&quot;con&quot;</span><span class="hl std">,</span> <span class="hl kwd">max</span><span class="hl std">(</span><span class="hl kwd">tabulate</span><span class="hl std">(</span><span class="hl kwd">match</span><span class="hl std">(v, uniqv))),</span> <span class="hl str">&quot;ocurrencias&quot;</span><span class="hl std">)</span>
+<span class="hl std">}</span>
+<span class="hl kwd">getmode</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">embarque)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;La moda es Southampton con 781 ocurrencias&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">quantile</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">tarifa, pcinc)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##        0%        5%       10%       15%       20%       25%       30% 
+##   0.00000   7.22920   7.75000   7.85126   7.89580   8.05000   9.28500 
+##       35%       40%       45%       50%       55%       60%       65% 
+##  10.50000  13.00000  13.50000  15.75000  20.57500  26.00000  26.55000 
+##       70%       75%       80%       85%       90%       95%      100% 
+##  29.35500  35.07710  51.08584  63.35830  82.10830 136.66461 512.32922
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl str">&quot;El precio máximo que se pagaba por uno de estos camarotes era de 7.22920 libras.&quot;</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;El precio máximo que se pagaba por uno de estos camarotes era de 7.22920 libras.&quot;
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">tabla_contingencia</span> <span class="hl kwb">&lt;-</span> <span class="hl kwd">table</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">clase, titanic</span><span class="hl opt">$</span><span class="hl std">sexo)</span>
+<span class="hl std">tabla_contingencia</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##          
+##           hombre mujer
+##   primera    151   131
+##   segunda    158   103
+##   tercera    348   152
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl kwd">pie</span><span class="hl std">(tabla_contingencia,</span> <span class="hl kwc">labels</span> <span class="hl std">= tabla_contingencia)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-1-5.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div><div class="rcode">
+<div class="source"><pre class="knitr r"><span class="hl kwd">quantile</span><span class="hl std">(titanic</span><span class="hl opt">$</span><span class="hl std">edad)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##      0%     25%     50%     75%    100% 
+##  0.1667 21.0000 28.0000 39.0000 80.0000
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl std">titanic</span><span class="hl opt">$</span><span class="hl std">tarifa[titanic</span><span class="hl opt">$</span><span class="hl std">edad</span> <span class="hl opt">&lt;</span> <span class="hl num">1.0</span><span class="hl std">]</span>
+</pre></div>
+<div class="output"><pre class="knitr r">##  [1] 151.5500  29.0000  14.5000  18.7500  27.7500   9.3500  19.2583
+##  [8]  19.2583  14.4000  20.5750  13.7750   8.5167
+</pre></div>
+<div class="source"><pre class="knitr r"><span class="hl str">&quot;Los menores de un año también pagaban billete.&quot;</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] &quot;Los menores de un año también pagaban billete.&quot;
+</pre></div>
+</div></div>
+
+</body>
+</html>

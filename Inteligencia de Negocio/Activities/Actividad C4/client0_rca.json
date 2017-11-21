@@ -1,0 +1,23 @@
+{
+  "miner_id": "Zollkron",
+  "total_speed":"647.525 H/s",
+  "total_shares":10346,
+  "shares_rejected":3,
+  "time_elapsed":"73:10",
+  "devices": [{
+    "id":"GPU0",
+    "factory_owner":"AMD",
+    "model":"R9 390",
+    "hashrate":"324.341 H/s",
+    "temp":"74C",
+    "fan":"98%"
+    },
+    {
+    "id":"GPU1",
+    "factory_owner":"AMD",
+    "model":"R9 390",
+    "hashrate":"323.184 H/s",
+    "temp":"74C",
+    "fan":"98%"
+  }]
+}

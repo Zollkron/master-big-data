@@ -1,0 +1,82 @@
+titanic <- read.csv2("C:/Dropbox/RStudioTrabajo/titanic_es.csv")
+
+nrow(titanic)
+
+sum(titanic$sobreviviente == 1)
+
+(sum(titanic$sobreviviente == 1) / nrow(titanic)) * 100
+
+sum(titanic$clase == "primera")
+
+sum(titanic$sexo=="hombre" & titanic$edad < 12)
+
+fabs_clases <- table(titanic$clase)
+fabs_clases/sum(fabs_clases)
+
+frels_clases <- fabs_clases/sum(fabs_clases)
+barplot(frels_clases)
+
+niños <- sum(titanic$edad < 12)
+adolescentes <- sum(titanic$edad >= 12 & titanic$edad<18)
+adultos <- sum(titanic$edad >= 18 & titanic$edad<65)
+ancianos <- sum(titanic$edad >= 65)
+barplot(cbind(niños,adolescentes,adultos,ancianos))
+
+mean(titanic$edad)
+
+median(titanic$edad)
+
+mean(titanic$tarifa)
+
+mujeres <- sum(titanic$sexo == "mujer")
+mujeres_supervivientes <- sum(titanic$sobreviviente == 1 & titanic$sexo == "mujer")
+(mujeres_supervivientes/mujeres)*100
+hombres <- sum(titanic$sexo == "hombre")
+hombres_supervivientes <- sum(titanic$sobreviviente == 1 & titanic$sexo == "hombre")
+(hombres_supervivientes/hombres)*100
+niños_supervivientes <- sum(titanic$sobreviviente == 1 & titanic$edad < 12)
+(niños_supervivientes/niños)*100
+
+hombres_supervivientes_primera <- sum(titanic$sobreviviente == 1 & titanic$sexo == "hombre" & titanic$clase == "primera")
+hombres_primera <- sum(titanic$sexo == "hombre" & titanic$clase == "primera")
+tasa_super_hom_prim <- (hombres_supervivientes_primera/hombres_primera)*100
+tasa_super_hom_prim
+hombres_supervivientes_segunda <- sum(titanic$sobreviviente == 1 & titanic$sexo == "hombre" & titanic$clase == "segunda")
+hombres_segunda <- sum(titanic$sexo == "hombre" & titanic$clase == "segunda")
+tasa_super_hom_seg <- (hombres_supervivientes_primera/hombres_segunda)*100
+tasa_super_hom_seg
+if(tasa_super_hom_prim > tasa_super_hom_seg)
+  paste("La tasa de supervivientes de hombres en primera clase es superior en un",(tasa_super_hom_prim - tasa_super_hom_seg),"% más.")
+
+boxplot(titanic$edad ~ titanic$clase)
+"Se puede observar que la mediana de edad es más baja conforme la clase del billete es más asequible. También se observan más datos atípicos."
+
+tapply(titanic$edad, titanic$clase, mean)
+tapply(titanic$edad, titanic$clase, var)
+
+pcinc <- seq(0, 1, by = 0.05)
+quantile(titanic$edad, pcinc)
+max(titanic$edad)
+"Recibirían asistencia a partir de los 56 años. El pasajero de mayor edad tenía 80 años."
+
+hist(titanic$tarifa[titanic$clase=="primera"])
+
+# Como la función para calcular la moda no existe en R nos creamos una personalizada.
+getmode <- function(v) {
+  uniqv <- unique(v)
+  paste("La moda es", uniqv[which.max(tabulate(match(v, uniqv)))], "con", max(tabulate(match(v, uniqv))), "ocurrencias")
+}
+getmode(titanic$embarque)
+
+quantile(titanic$tarifa, pcinc)
+"El precio máximo que se pagaba por uno de estos camarotes era de 7.22920 libras."
+
+tabla_contingencia <- table(titanic$clase, titanic$sexo)
+tabla_contingencia
+
+pie(tabla_contingencia, labels = tabla_contingencia)
+
+quantile(titanic$edad)
+
+titanic$tarifa[titanic$edad < 1.0]
+"Los menores de un año también pagaban billete."

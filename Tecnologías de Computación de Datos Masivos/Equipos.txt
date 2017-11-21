@@ -1,0 +1,11 @@
+IPs Públicas
+
+NameNode = X.X.X.X
+CheckPointNode = X.X.X.X
+DataNode1 = X.X.X.X
+DataNode2 = X.X.X.X
+DataNode3 = X.X.X.X
+DataNode4 = X.X.X.X
+DataNode5 = X.X.X.X
+
+

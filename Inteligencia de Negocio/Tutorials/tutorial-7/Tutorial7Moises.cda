@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><CDADescriptor>
+  <DataSources>
+    <Connection id="query1" type="mondrian.jndi">
+      <Catalog>mondrian:/in07moises</Catalog>
+      <Jndi>in07con</Jndi>
+    </Connection>
+    <Connection id="query2" type="mondrian.jndi">
+      <Catalog>mondrian:/in07moises</Catalog>
+      <Jndi>in07con</Jndi>
+    </Connection>
+  </DataSources>
+  <DataAccess access="public" connection="query1" id="query1" type="mdx">
+    <Name>query1</Name>
+    <BandedMode>compact</BandedMode>
+    <Cache duration="3600" enabled="true"/>
+    <Columns/>
+    <Parameters/>
+    <Query><![CDATA[SELECT
+NON EMPTY {[Time.Time].[Month].Members} ON COLUMNS,
+NON EMPTY {[Procedence.Procedence].[Urgencias]} ON ROWS
+FROM [Moises]]]></Query>
+  </DataAccess>
+  <DataAccess access="public" connection="query2" id="query2" type="mdx">
+    <Name>query2</Name>
+    <BandedMode>compact</BandedMode>
+    <Cache duration="3600" enabled="true"/>
+    <Columns/>
+    <Parameters/>
+    <Query><![CDATA[SELECT
+NON EMPTY {[AdmissionType].[Type].Members} ON COLUMNS,
+NON EMPTY {[Procedence].[ProcedenceLevelService].Members} ON ROWS
+FROM [Moises]]]></Query>
+  </DataAccess>
+</CDADescriptor>

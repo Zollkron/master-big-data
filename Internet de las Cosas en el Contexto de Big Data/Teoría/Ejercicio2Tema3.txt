@@ -1,0 +1,43 @@
+(curl localhost:1026/NGSI10/updateContext -s -S --header
+'Content-Type: application/xml' -d @- | xmllint --format - ) <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+    <updateContextRequest>
+        <contextElementList>
+            <contextElement>
+                <entityId type="Door" isPattern="false">
+                    <id>Frontdoor</id>
+                </entityId>
+                <contextAttributeList>
+                    <contextAttribute>
+                        <name>Locked</name>
+                        <type>boolean</type>
+                        <contextValue>false</contextValue>
+                    </contextAttribute>
+                    <contextAttribute>
+                        <name>Closed</name>
+                        <type>boolean</type>
+                        <contextValue>false</contextValue>
+                    </contextAttribute>
+                </contextAttributeList>
+            </contextElement>
+            <contextElement>
+                <entityId type="Door" isPattern="false">
+                    <id>Backdoor</id>
+                </entityId>
+                <contextAttributeList>
+                    <contextAttribute>
+                        <name>Locked</name>
+                        <type>boolean</type>
+                        <contextValue>false</contextValue>
+                    </contextAttribute>
+                    <contextAttribute>
+                        <name>Closed</name>
+                        <type>boolean</type>
+                        <contextValue>false</contextValue>
+                    </contextAttribute>
+                </contextAttributeList>
+            </contextElement>
+        </contextElementList>
+        <updateAction>APPEND</updateAction>
+    </updateContextRequest>
+EOF

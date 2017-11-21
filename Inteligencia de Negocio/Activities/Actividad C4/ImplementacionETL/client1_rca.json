@@ -1,0 +1,23 @@
+{
+  "miner_id": "Drakon-Alunt",
+  "total_speed":"371.904 H/s",
+  "total_shares":19777,
+  "shares_rejected":8,
+  "time_elapsed":"230:51",
+  "devices": [{
+    "id":"GPU0",
+    "factory_owner":"AMD",
+    "model":"R9 280X",
+    "hashrate":"210.013 H/s",
+    "temp":"77C",
+    "fan":"94%"
+    },
+    {
+    "id":"GPU1",
+    "factory_owner":"AMD",
+    "model":"R9 380X",
+    "hashrate":"161.891 H/s",
+    "temp":"71C",
+    "fan":"59%"
+  }]
+}

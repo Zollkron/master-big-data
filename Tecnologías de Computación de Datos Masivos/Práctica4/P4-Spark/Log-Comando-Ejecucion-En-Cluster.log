@@ -1,0 +1,774 @@
+hdmaster@NameNode:~/Tema5-Spark-notebook$ spark-submit --master yarn sparkpractica.py datos/patentes-mini/cite75_99.txt datos/patentes-mini/apatseq outdir1 outdir2
+2016-12-20 01:36:31,520 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Running Spark version 2.0.2
+2016-12-20 01:36:31,853 WARN  [Thread-3] util.NativeCodeLoader (NativeCodeLoader.java:<clinit>(62)) - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2016-12-20 01:36:32,034 INFO  [Thread-3] spark.SecurityManager (Logging.scala:logInfo(54)) - Changing view acls to: hdmaster
+2016-12-20 01:36:32,036 INFO  [Thread-3] spark.SecurityManager (Logging.scala:logInfo(54)) - Changing modify acls to: hdmaster
+2016-12-20 01:36:32,036 INFO  [Thread-3] spark.SecurityManager (Logging.scala:logInfo(54)) - Changing view acls groups to: 
+2016-12-20 01:36:32,037 INFO  [Thread-3] spark.SecurityManager (Logging.scala:logInfo(54)) - Changing modify acls groups to: 
+2016-12-20 01:36:32,038 INFO  [Thread-3] spark.SecurityManager (Logging.scala:logInfo(54)) - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(hdmaster); groups with view permissions: Set(); users  with modify permissions: Set(hdmaster); groups with modify permissions: Set()
+2016-12-20 01:36:32,332 INFO  [Thread-3] util.Utils (Logging.scala:logInfo(54)) - Successfully started service 'sparkDriver' on port 33769.
+2016-12-20 01:36:32,352 INFO  [Thread-3] spark.SparkEnv (Logging.scala:logInfo(54)) - Registering MapOutputTracker
+2016-12-20 01:36:32,371 INFO  [Thread-3] spark.SparkEnv (Logging.scala:logInfo(54)) - Registering BlockManagerMaster
+2016-12-20 01:36:32,388 INFO  [Thread-3] storage.DiskBlockManager (Logging.scala:logInfo(54)) - Created local directory at /tmp/blockmgr-22237522-60d3-4aea-8c20-f448c63d058f
+2016-12-20 01:36:32,455 INFO  [Thread-3] memory.MemoryStore (Logging.scala:logInfo(54)) - MemoryStore started with capacity 366.3 MB
+2016-12-20 01:36:32,590 INFO  [Thread-3] spark.SparkEnv (Logging.scala:logInfo(54)) - Registering OutputCommitCoordinator
+2016-12-20 01:36:32,691 INFO  [Thread-3] util.log (Log.java:initialized(186)) - Logging initialized @2161ms
+2016-12-20 01:36:32,789 INFO  [Thread-3] server.Server (Server.java:doStart(327)) - jetty-9.2.z-SNAPSHOT
+2016-12-20 01:36:32,807 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@623e763a{/jobs,null,AVAILABLE}
+2016-12-20 01:36:32,810 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@1bbaab0{/jobs/json,null,AVAILABLE}
+2016-12-20 01:36:32,811 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@4150d487{/jobs/job,null,AVAILABLE}
+2016-12-20 01:36:32,811 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@34ae90b0{/jobs/job/json,null,AVAILABLE}
+2016-12-20 01:36:32,812 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@2530afb9{/stages,null,AVAILABLE}
+2016-12-20 01:36:32,812 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@79027f85{/stages/json,null,AVAILABLE}
+2016-12-20 01:36:32,812 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@3eb168ce{/stages/stage,null,AVAILABLE}
+2016-12-20 01:36:32,813 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@7e5a54b8{/stages/stage/json,null,AVAILABLE}
+2016-12-20 01:36:32,813 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@5e3761ad{/stages/pool,null,AVAILABLE}
+2016-12-20 01:36:32,814 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@34a3d3b9{/stages/pool/json,null,AVAILABLE}
+2016-12-20 01:36:32,814 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@1e12afb{/storage,null,AVAILABLE}
+2016-12-20 01:36:32,814 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@2d3241eb{/storage/json,null,AVAILABLE}
+2016-12-20 01:36:32,815 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@486d77e9{/storage/rdd,null,AVAILABLE}
+2016-12-20 01:36:32,815 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@62f95b46{/storage/rdd/json,null,AVAILABLE}
+2016-12-20 01:36:32,815 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@6a470310{/environment,null,AVAILABLE}
+2016-12-20 01:36:32,816 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@55c53aaa{/environment/json,null,AVAILABLE}
+2016-12-20 01:36:32,816 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@7634ddc4{/executors,null,AVAILABLE}
+2016-12-20 01:36:32,816 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@5e3f9b2f{/executors/json,null,AVAILABLE}
+2016-12-20 01:36:32,817 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@cb24c7b{/executors/threadDump,null,AVAILABLE}
+2016-12-20 01:36:32,817 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@70de272d{/executors/threadDump/json,null,AVAILABLE}
+2016-12-20 01:36:32,824 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@20d41e0f{/static,null,AVAILABLE}
+2016-12-20 01:36:32,825 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@2901fd9{/,null,AVAILABLE}
+2016-12-20 01:36:32,826 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@1c5f4a64{/api,null,AVAILABLE}
+2016-12-20 01:36:32,827 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@1db9f18d{/stages/stage/kill,null,AVAILABLE}
+2016-12-20 01:36:32,841 INFO  [Thread-3] server.ServerConnector (AbstractConnector.java:doStart(266)) - Started ServerConnector@7d6b009b{HTTP/1.1}{0.0.0.0:4040}
+2016-12-20 01:36:32,841 INFO  [Thread-3] server.Server (Server.java:doStart(379)) - Started @2312ms
+2016-12-20 01:36:32,841 INFO  [Thread-3] util.Utils (Logging.scala:logInfo(54)) - Successfully started service 'SparkUI' on port 4040.
+2016-12-20 01:36:32,843 INFO  [Thread-3] ui.SparkUI (Logging.scala:logInfo(54)) - Bound SparkUI to 0.0.0.0, and started at http://10.0.0.4:4040
+2016-12-20 01:36:33,668 INFO  [Thread-3] client.RMProxy (RMProxy.java:createRMProxy(98)) - Connecting to ResourceManager at resourcemanager/10.0.0.4:8032
+2016-12-20 01:36:33,825 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Requesting a new application from cluster with 4 NodeManagers
+2016-12-20 01:36:33,847 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Verifying our application has not requested more than the maximum memory capability of the cluster (3072 MB per container)
+2016-12-20 01:36:33,848 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Will allocate AM container, with 896 MB memory including 384 MB overhead
+2016-12-20 01:36:33,848 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Setting up container launch context for our AM
+2016-12-20 01:36:33,853 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Setting up the launch environment for our AM container
+2016-12-20 01:36:33,870 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Preparing resources for our AM container
+2016-12-20 01:36:34,019 WARN  [Thread-3] yarn.Client (Logging.scala:logWarning(66)) - Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+2016-12-20 01:36:37,747 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Uploading resource file:/tmp/spark-c69ceef3-ecce-4e7a-8cdf-de3d139048cf/__spark_libs__3667793621326627958.zip -> hdfs://namenode:9000/user/hdmaster/.sparkStaging/application_1482197250083_0004/__spark_libs__3667793621326627958.zip
+2016-12-20 01:36:42,774 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Uploading resource file:/opt/yarn/spark/python/lib/pyspark.zip -> hdfs://namenode:9000/user/hdmaster/.sparkStaging/application_1482197250083_0004/pyspark.zip
+2016-12-20 01:36:42,928 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Uploading resource file:/opt/yarn/spark/python/lib/py4j-0.10.3-src.zip -> hdfs://namenode:9000/user/hdmaster/.sparkStaging/application_1482197250083_0004/py4j-0.10.3-src.zip
+2016-12-20 01:36:43,087 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Uploading resource file:/tmp/spark-c69ceef3-ecce-4e7a-8cdf-de3d139048cf/__spark_conf__2608466149284318212.zip -> hdfs://namenode:9000/user/hdmaster/.sparkStaging/application_1482197250083_0004/__spark_conf__.zip
+2016-12-20 01:36:43,235 INFO  [Thread-3] spark.SecurityManager (Logging.scala:logInfo(54)) - Changing view acls to: hdmaster
+2016-12-20 01:36:43,235 INFO  [Thread-3] spark.SecurityManager (Logging.scala:logInfo(54)) - Changing modify acls to: hdmaster
+2016-12-20 01:36:43,236 INFO  [Thread-3] spark.SecurityManager (Logging.scala:logInfo(54)) - Changing view acls groups to: 
+2016-12-20 01:36:43,236 INFO  [Thread-3] spark.SecurityManager (Logging.scala:logInfo(54)) - Changing modify acls groups to: 
+2016-12-20 01:36:43,236 INFO  [Thread-3] spark.SecurityManager (Logging.scala:logInfo(54)) - SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(hdmaster); groups with view permissions: Set(); users  with modify permissions: Set(hdmaster); groups with modify permissions: Set()
+2016-12-20 01:36:43,243 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Submitting application application_1482197250083_0004 to ResourceManager
+2016-12-20 01:36:43,287 INFO  [Thread-3] impl.YarnClientImpl (YarnClientImpl.java:submitApplication(273)) - Submitted application application_1482197250083_0004
+2016-12-20 01:36:43,290 INFO  [Thread-3] cluster.SchedulerExtensionServices (Logging.scala:logInfo(54)) - Starting Yarn extension services with app application_1482197250083_0004 and attemptId None
+2016-12-20 01:36:44,298 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Application report for application_1482197250083_0004 (state: ACCEPTED)
+2016-12-20 01:36:44,305 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - 
+         client token: N/A
+         diagnostics: N/A
+         ApplicationMaster host: N/A
+         ApplicationMaster RPC port: -1
+         queue: default
+         start time: 1482197803255
+         final status: UNDEFINED
+         tracking URL: http://resourcemanager:8088/proxy/application_1482197250083_0004/
+         user: hdmaster
+2016-12-20 01:36:45,308 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Application report for application_1482197250083_0004 (state: ACCEPTED)
+2016-12-20 01:36:46,310 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Application report for application_1482197250083_0004 (state: ACCEPTED)
+2016-12-20 01:36:47,311 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Application report for application_1482197250083_0004 (state: ACCEPTED)
+2016-12-20 01:36:48,313 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Application report for application_1482197250083_0004 (state: ACCEPTED)
+2016-12-20 01:36:49,318 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Application report for application_1482197250083_0004 (state: ACCEPTED)
+2016-12-20 01:36:50,023 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnSchedulerEndpoint (Logging.scala:logInfo(54)) - ApplicationMaster registered as NettyRpcEndpointRef(null)
+2016-12-20 01:36:50,061 INFO  [dispatcher-event-loop-1] cluster.YarnClientSchedulerBackend (Logging.scala:logInfo(54)) - Add WebUI Filter. org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter, Map(PROXY_HOSTS -> resourcemanager, PROXY_URI_BASES -> http://resourcemanager:8088/proxy/application_1482197250083_0004), /proxy/application_1482197250083_0004
+2016-12-20 01:36:50,064 INFO  [dispatcher-event-loop-1] ui.JettyUtils (Logging.scala:logInfo(54)) - Adding filter: org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter
+2016-12-20 01:36:50,320 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - Application report for application_1482197250083_0004 (state: RUNNING)
+2016-12-20 01:36:50,320 INFO  [Thread-3] yarn.Client (Logging.scala:logInfo(54)) - 
+         client token: N/A
+         diagnostics: N/A
+         ApplicationMaster host: 10.0.0.9
+         ApplicationMaster RPC port: 0
+         queue: default
+         start time: 1482197803255
+         final status: UNDEFINED
+         tracking URL: http://resourcemanager:8088/proxy/application_1482197250083_0004/
+         user: hdmaster
+2016-12-20 01:36:50,321 INFO  [Thread-3] cluster.YarnClientSchedulerBackend (Logging.scala:logInfo(54)) - Application application_1482197250083_0004 has started running.
+2016-12-20 01:36:50,327 INFO  [Thread-3] util.Utils (Logging.scala:logInfo(54)) - Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46178.
+2016-12-20 01:36:50,329 INFO  [Thread-3] netty.NettyBlockTransferService (Logging.scala:logInfo(54)) - Server created on 10.0.0.4:46178
+2016-12-20 01:36:50,332 INFO  [Thread-3] storage.BlockManagerMaster (Logging.scala:logInfo(54)) - Registering BlockManager BlockManagerId(driver, 10.0.0.4, 46178)
+2016-12-20 01:36:50,335 INFO  [dispatcher-event-loop-0] storage.BlockManagerMasterEndpoint (Logging.scala:logInfo(54)) - Registering block manager 10.0.0.4:46178 with 366.3 MB RAM, BlockManagerId(driver, 10.0.0.4, 46178)
+2016-12-20 01:36:50,347 INFO  [Thread-3] storage.BlockManagerMaster (Logging.scala:logInfo(54)) - Registered BlockManager BlockManagerId(driver, 10.0.0.4, 46178)
+2016-12-20 01:36:50,518 INFO  [Thread-3] handler.ContextHandler (ContextHandler.java:doStart(744)) - Started o.s.j.s.ServletContextHandler@140078{/metrics/json,null,AVAILABLE}
+2016-12-20 01:36:55,281 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Registered executor NettyRpcEndpointRef(null) (10.0.0.9:46524) with ID 1
+2016-12-20 01:36:55,337 INFO  [dispatcher-event-loop-1] storage.BlockManagerMasterEndpoint (Logging.scala:logInfo(54)) - Registering block manager datanode4:41658 with 413.9 MB RAM, BlockManagerId(1, datanode4, 41658)
+2016-12-20 01:36:58,634 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Registered executor NettyRpcEndpointRef(null) (10.0.0.6:58635) with ID 2
+2016-12-20 01:36:58,649 INFO  [Thread-3] cluster.YarnClientSchedulerBackend (Logging.scala:logInfo(54)) - SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.8
+2016-12-20 01:36:58,697 INFO  [dispatcher-event-loop-1] storage.BlockManagerMasterEndpoint (Logging.scala:logInfo(54)) - Registering block manager datanode1:54040 with 413.9 MB RAM, BlockManagerId(2, datanode1, 54040)
+2016-12-20 01:36:59,105 INFO  [Thread-3] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_0 stored as values in memory (estimated size 283.0 KB, free 366.0 MB)
+2016-12-20 01:36:59,165 INFO  [Thread-3] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_0_piece0 stored as bytes in memory (estimated size 23.7 KB, free 366.0 MB)
+2016-12-20 01:36:59,167 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_0_piece0 in memory on 10.0.0.4:46178 (size: 23.7 KB, free: 366.3 MB)
+2016-12-20 01:36:59,180 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 0 from textFile at NativeMethodAccessorImpl.java:-2
+2016-12-20 01:36:59,297 INFO  [Thread-3] mapred.FileInputFormat (FileInputFormat.java:listStatus(249)) - Total input paths to process : 1
+2016-12-20 01:36:59,530 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44
+2016-12-20 01:36:59,554 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Registering RDD 3 (reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44)
+2016-12-20 01:36:59,558 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 0 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44) with 2 output partitions
+2016-12-20 01:36:59,558 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 1 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44)
+2016-12-20 01:36:59,559 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List(ShuffleMapStage 0)
+2016-12-20 01:36:59,561 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List(ShuffleMapStage 0)
+2016-12-20 01:36:59,579 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ShuffleMapStage 0 (PairwiseRDD[3] at reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44), which has no missing parents
+2016-12-20 01:36:59,628 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_1 stored as values in memory (estimated size 9.2 KB, free 366.0 MB)
+2016-12-20 01:36:59,632 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_1_piece0 stored as bytes in memory (estimated size 5.8 KB, free 366.0 MB)
+2016-12-20 01:36:59,632 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_1_piece0 in memory on 10.0.0.4:46178 (size: 5.8 KB, free: 366.3 MB)
+2016-12-20 01:36:59,634 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 1 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:36:59,638 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ShuffleMapStage 0 (PairwiseRDD[3] at reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44)
+2016-12-20 01:36:59,640 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 0.0 with 2 tasks
+2016-12-20 01:36:59,742 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 0.0 (TID 0, datanode1, partition 0, NODE_LOCAL, 5507 bytes)
+2016-12-20 01:36:59,756 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 0 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:00,128 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_1_piece0 in memory on datanode1:54040 (size: 5.8 KB, free: 413.9 MB)
+2016-12-20 01:37:00,392 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_0_piece0 in memory on datanode1:54040 (size: 23.7 KB, free: 413.9 MB)
+2016-12-20 01:37:02,946 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 0.0 (TID 1, datanode1, partition 1, NODE_LOCAL, 5507 bytes)
+2016-12-20 01:37:02,949 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 1 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:02,977 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 0.0 (TID 0) in 3249 ms on datanode1 (1/2)
+2016-12-20 01:37:03,116 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ShuffleMapStage 0 (reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44) finished in 3,411 s
+2016-12-20 01:37:03,117 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - looking for newly runnable stages
+2016-12-20 01:37:03,117 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - running: Set()
+2016-12-20 01:37:03,117 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - waiting: Set(ResultStage 1)
+2016-12-20 01:37:03,118 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - failed: Set()
+2016-12-20 01:37:03,120 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 1 (PythonRDD[6] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44), which has no missing parents
+2016-12-20 01:37:03,121 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 0.0 (TID 1) in 174 ms on datanode1 (2/2)
+2016-12-20 01:37:03,123 INFO  [task-result-getter-1] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 0.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:03,128 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_2 stored as values in memory (estimated size 7.1 KB, free 366.0 MB)
+2016-12-20 01:37:03,129 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_2_piece0 stored as bytes in memory (estimated size 4.3 KB, free 366.0 MB)
+2016-12-20 01:37:03,130 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_2_piece0 in memory on 10.0.0.4:46178 (size: 4.3 KB, free: 366.3 MB)
+2016-12-20 01:37:03,131 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 2 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:03,131 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ResultStage 1 (PythonRDD[6] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44)
+2016-12-20 01:37:03,132 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 1.0 with 2 tasks
+2016-12-20 01:37:03,134 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 1.0 (TID 2, datanode1, partition 0, NODE_LOCAL, 5252 bytes)
+2016-12-20 01:37:03,135 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 2 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:03,160 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_2_piece0 in memory on datanode1:54040 (size: 4.3 KB, free: 413.9 MB)
+2016-12-20 01:37:03,188 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 0 to 10.0.0.6:58635
+2016-12-20 01:37:03,192 INFO  [map-output-dispatcher-0] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 0 is 148 bytes
+2016-12-20 01:37:03,279 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 1.0 (TID 3, datanode1, partition 1, NODE_LOCAL, 5252 bytes)
+2016-12-20 01:37:03,279 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 3 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:03,280 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 1.0 (TID 2) in 148 ms on datanode1 (1/2)
+2016-12-20 01:37:03,365 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 1 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44) finished in 0,228 s
+2016-12-20 01:37:03,366 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 1.0 (TID 3) in 85 ms on datanode1 (2/2)
+2016-12-20 01:37:03,366 INFO  [task-result-getter-3] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 1.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:03,373 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 0 finished: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44, took 3,842847 s
+2016-12-20 01:37:03,393 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44
+2016-12-20 01:37:03,397 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 1 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44) with 2 output partitions
+2016-12-20 01:37:03,397 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 3 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44)
+2016-12-20 01:37:03,397 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List(ShuffleMapStage 2)
+2016-12-20 01:37:03,398 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List()
+2016-12-20 01:37:03,398 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 3 (PythonRDD[7] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44), which has no missing parents
+2016-12-20 01:37:03,400 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_3 stored as values in memory (estimated size 7.2 KB, free 366.0 MB)
+2016-12-20 01:37:03,401 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_3_piece0 stored as bytes in memory (estimated size 4.4 KB, free 366.0 MB)
+2016-12-20 01:37:03,402 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_3_piece0 in memory on 10.0.0.4:46178 (size: 4.4 KB, free: 366.3 MB)
+2016-12-20 01:37:03,402 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 3 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:03,403 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ResultStage 3 (PythonRDD[7] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44)
+2016-12-20 01:37:03,403 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 3.0 with 2 tasks
+2016-12-20 01:37:03,407 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 3.0 (TID 4, datanode1, partition 0, NODE_LOCAL, 5253 bytes)
+2016-12-20 01:37:03,407 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 4 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:03,433 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_3_piece0 in memory on datanode1:54040 (size: 4.4 KB, free: 413.9 MB)
+2016-12-20 01:37:03,500 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 3.0 (TID 5, datanode1, partition 1, NODE_LOCAL, 5253 bytes)
+2016-12-20 01:37:03,501 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 5 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:03,501 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 3.0 (TID 4) in 96 ms on datanode1 (1/2)
+2016-12-20 01:37:03,574 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 3.0 (TID 5) in 74 ms on datanode1 (2/2)
+2016-12-20 01:37:03,574 INFO  [task-result-getter-1] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 3.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:03,575 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 3 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44) finished in 0,170 s
+2016-12-20 01:37:03,576 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 1 finished: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44, took 0,182541 s
+2016-12-20 01:37:03,609 INFO  [Thread-3] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_4 stored as values in memory (estimated size 283.0 KB, free 365.7 MB)
+2016-12-20 01:37:03,634 INFO  [Thread-3] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_4_piece0 stored as bytes in memory (estimated size 23.7 KB, free 365.7 MB)
+2016-12-20 01:37:03,636 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_4_piece0 in memory on 10.0.0.4:46178 (size: 23.7 KB, free: 366.2 MB)
+2016-12-20 01:37:03,637 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 4 from sequenceFile at PythonRDD.scala:526
+2016-12-20 01:37:03,652 INFO  [Thread-3] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_5 stored as values in memory (estimated size 283.0 KB, free 365.4 MB)
+2016-12-20 01:37:03,669 INFO  [Thread-3] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_5_piece0 stored as bytes in memory (estimated size 23.7 KB, free 365.4 MB)
+2016-12-20 01:37:03,670 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_5_piece0 in memory on 10.0.0.4:46178 (size: 23.7 KB, free: 366.2 MB)
+2016-12-20 01:37:03,671 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 5 from broadcast at PythonRDD.scala:527
+2016-12-20 01:37:03,714 INFO  [Thread-3] mapred.FileInputFormat (FileInputFormat.java:listStatus(249)) - Total input paths to process : 2
+2016-12-20 01:37:03,735 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: take at SerDeUtil.scala:203
+2016-12-20 01:37:03,739 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 2 (take at SerDeUtil.scala:203) with 1 output partitions
+2016-12-20 01:37:03,739 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 4 (take at SerDeUtil.scala:203)
+2016-12-20 01:37:03,739 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List()
+2016-12-20 01:37:03,740 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List()
+2016-12-20 01:37:03,740 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 4 (MapPartitionsRDD[13] at map at PythonHadoopUtil.scala:181), which has no missing parents
+2016-12-20 01:37:03,742 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_6 stored as values in memory (estimated size 3.2 KB, free 365.4 MB)
+2016-12-20 01:37:03,743 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_6_piece0 stored as bytes in memory (estimated size 1996.0 B, free 365.4 MB)
+2016-12-20 01:37:03,745 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_6_piece0 in memory on 10.0.0.4:46178 (size: 1996.0 B, free: 366.2 MB)
+2016-12-20 01:37:03,746 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 6 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:03,746 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 1 missing tasks from ResultStage 4 (MapPartitionsRDD[13] at map at PythonHadoopUtil.scala:181)
+2016-12-20 01:37:03,747 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 4.0 with 1 tasks
+2016-12-20 01:37:03,748 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 4.0 (TID 6, datanode1, partition 0, NODE_LOCAL, 5430 bytes)
+2016-12-20 01:37:03,749 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 6 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:03,769 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_6_piece0 in memory on datanode1:54040 (size: 1996.0 B, free: 413.9 MB)
+2016-12-20 01:37:03,796 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_4_piece0 in memory on datanode1:54040 (size: 23.7 KB, free: 413.9 MB)
+2016-12-20 01:37:03,892 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 4.0 (TID 6) in 145 ms on datanode1 (1/1)
+2016-12-20 01:37:03,892 INFO  [task-result-getter-2] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 4.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:03,893 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 4 (take at SerDeUtil.scala:203) finished in 0,143 s
+2016-12-20 01:37:03,893 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 2 finished: take at SerDeUtil.scala:203, took 0,154604 s
+2016-12-20 01:37:04,028 INFO  [Thread-3] Configuration.deprecation (Configuration.java:warnOnceIfDeprecated(1173)) - mapred.tip.id is deprecated. Instead, use mapreduce.task.id
+2016-12-20 01:37:04,029 INFO  [Thread-3] Configuration.deprecation (Configuration.java:warnOnceIfDeprecated(1173)) - mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id
+2016-12-20 01:37:04,029 INFO  [Thread-3] Configuration.deprecation (Configuration.java:warnOnceIfDeprecated(1173)) - mapred.task.is.map is deprecated. Instead, use mapreduce.task.ismap
+2016-12-20 01:37:04,029 INFO  [Thread-3] Configuration.deprecation (Configuration.java:warnOnceIfDeprecated(1173)) - mapred.task.partition is deprecated. Instead, use mapreduce.task.partition
+2016-12-20 01:37:04,029 INFO  [Thread-3] Configuration.deprecation (Configuration.java:warnOnceIfDeprecated(1173)) - mapred.job.id is deprecated. Instead, use mapreduce.job.id
+2016-12-20 01:37:04,033 INFO  [Thread-3] output.FileOutputCommitter (FileOutputCommitter.java:<init>(108)) - File Output Committer Algorithm version is 1
+2016-12-20 01:37:04,090 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: saveAsTextFile at NativeMethodAccessorImpl.java:-2
+2016-12-20 01:37:04,093 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Registering RDD 9 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44)
+2016-12-20 01:37:04,095 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Registering RDD 19 (subtractByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:58)
+2016-12-20 01:37:04,097 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Registering RDD 26 (subtractByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:63)
+2016-12-20 01:37:04,097 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Registering RDD 33 (fullOuterJoin at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:69)
+2016-12-20 01:37:04,098 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 3 (saveAsTextFile at NativeMethodAccessorImpl.java:-2) with 8 output partitions
+2016-12-20 01:37:04,098 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 10 (saveAsTextFile at NativeMethodAccessorImpl.java:-2)
+2016-12-20 01:37:04,098 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List(ShuffleMapStage 9)
+2016-12-20 01:37:04,098 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List(ShuffleMapStage 9)
+2016-12-20 01:37:04,102 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ShuffleMapStage 6 (PairwiseRDD[9] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44), which has no missing parents
+2016-12-20 01:37:04,111 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_7 stored as values in memory (estimated size 7.9 KB, free 365.4 MB)
+2016-12-20 01:37:04,113 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_7_piece0 stored as bytes in memory (estimated size 4.9 KB, free 365.3 MB)
+2016-12-20 01:37:04,113 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_7_piece0 in memory on 10.0.0.4:46178 (size: 4.9 KB, free: 366.2 MB)
+2016-12-20 01:37:04,114 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 7 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:04,114 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ShuffleMapStage 6 (PairwiseRDD[9] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44)
+2016-12-20 01:37:04,115 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 6.0 with 2 tasks
+2016-12-20 01:37:04,122 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 6.0 (TID 7, datanode1, partition 0, NODE_LOCAL, 5166 bytes)
+2016-12-20 01:37:04,122 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 7 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:04,146 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_7_piece0 in memory on datanode1:54040 (size: 4.9 KB, free: 413.9 MB)
+2016-12-20 01:37:04,252 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 6.0 (TID 8, datanode1, partition 1, NODE_LOCAL, 5166 bytes)
+2016-12-20 01:37:04,252 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 8 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:04,253 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 6.0 (TID 7) in 137 ms on datanode1 (1/2)
+2016-12-20 01:37:04,344 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 6.0 (TID 8) in 93 ms on datanode1 (2/2)
+2016-12-20 01:37:04,345 INFO  [task-result-getter-0] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 6.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:04,345 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ShuffleMapStage 6 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:44) finished in 0,230 s
+2016-12-20 01:37:04,345 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - looking for newly runnable stages
+2016-12-20 01:37:04,346 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - running: Set()
+2016-12-20 01:37:04,346 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - waiting: Set(ShuffleMapStage 9, ResultStage 10, ShuffleMapStage 7, ShuffleMapStage 8)
+2016-12-20 01:37:04,346 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - failed: Set()
+2016-12-20 01:37:04,348 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ShuffleMapStage 7 (PairwiseRDD[19] at subtractByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:58), which has no missing parents
+2016-12-20 01:37:04,352 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_8 stored as values in memory (estimated size 14.4 KB, free 365.3 MB)
+2016-12-20 01:37:04,354 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_8_piece0 stored as bytes in memory (estimated size 7.7 KB, free 365.3 MB)
+2016-12-20 01:37:04,355 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_8_piece0 in memory on 10.0.0.4:46178 (size: 7.7 KB, free: 366.2 MB)
+2016-12-20 01:37:04,355 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 8 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:04,356 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 4 missing tasks from ShuffleMapStage 7 (PairwiseRDD[19] at subtractByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:58)
+2016-12-20 01:37:04,356 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 7.0 with 4 tasks
+2016-12-20 01:37:04,364 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 7.0 (TID 9, datanode4, partition 0, NODE_LOCAL, 5538 bytes)
+2016-12-20 01:37:04,364 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 7.0 (TID 10, datanode1, partition 1, NODE_LOCAL, 5538 bytes)
+2016-12-20 01:37:04,365 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 9 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:04,365 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 10 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:04,384 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_8_piece0 in memory on datanode1:54040 (size: 7.7 KB, free: 413.9 MB)
+2016-12-20 01:37:04,690 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added rdd_14_1 in memory on datanode1:54040 (size: 242.2 KB, free: 413.6 MB)
+2016-12-20 01:37:04,784 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_8_piece0 in memory on datanode4:41658 (size: 7.7 KB, free: 413.9 MB)
+2016-12-20 01:37:04,999 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 2.0 in stage 7.0 (TID 11, datanode1, partition 2, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:04,999 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 11 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:04,999 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 7.0 (TID 10) in 635 ms on datanode1 (1/4)
+2016-12-20 01:37:05,015 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 2 to 10.0.0.6:58635
+2016-12-20 01:37:05,016 INFO  [map-output-dispatcher-2] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 2 is 151 bytes
+2016-12-20 01:37:05,069 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_4_piece0 in memory on datanode4:41658 (size: 23.7 KB, free: 413.9 MB)
+2016-12-20 01:37:05,197 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 3.0 in stage 7.0 (TID 12, datanode1, partition 3, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:05,198 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 12 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:05,198 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 2.0 in stage 7.0 (TID 11) in 200 ms on datanode1 (2/4)
+2016-12-20 01:37:05,352 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 3.0 in stage 7.0 (TID 12) in 155 ms on datanode1 (3/4)
+2016-12-20 01:37:07,384 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added rdd_14_0 in memory on datanode4:41658 (size: 240.4 KB, free: 413.7 MB)
+2016-12-20 01:37:08,311 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 7.0 (TID 9) in 3954 ms on datanode4 (4/4)
+2016-12-20 01:37:08,311 INFO  [task-result-getter-0] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 7.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:08,313 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ShuffleMapStage 7 (subtractByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:58) finished in 3,954 s
+2016-12-20 01:37:08,313 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - looking for newly runnable stages
+2016-12-20 01:37:08,313 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - running: Set()
+2016-12-20 01:37:08,313 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - waiting: Set(ShuffleMapStage 9, ResultStage 10, ShuffleMapStage 8)
+2016-12-20 01:37:08,313 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - failed: Set()
+2016-12-20 01:37:08,315 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ShuffleMapStage 8 (PairwiseRDD[26] at subtractByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:63), which has no missing parents
+2016-12-20 01:37:08,317 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_9 stored as values in memory (estimated size 16.7 KB, free 365.3 MB)
+2016-12-20 01:37:08,319 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_9_piece0 stored as bytes in memory (estimated size 8.9 KB, free 365.3 MB)
+2016-12-20 01:37:08,319 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_9_piece0 in memory on 10.0.0.4:46178 (size: 8.9 KB, free: 366.2 MB)
+2016-12-20 01:37:08,320 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 9 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:08,320 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 6 missing tasks from ShuffleMapStage 8 (PairwiseRDD[26] at subtractByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:63)
+2016-12-20 01:37:08,321 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 8.0 with 6 tasks
+2016-12-20 01:37:08,328 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 8.0 (TID 13, datanode1, partition 1, PROCESS_LOCAL, 5538 bytes)
+2016-12-20 01:37:08,329 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 8.0 (TID 14, datanode4, partition 0, PROCESS_LOCAL, 5538 bytes)
+2016-12-20 01:37:08,329 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 13 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:08,330 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 14 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:08,343 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_9_piece0 in memory on datanode1:54040 (size: 8.9 KB, free: 413.6 MB)
+2016-12-20 01:37:08,347 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_9_piece0 in memory on datanode4:41658 (size: 8.9 KB, free: 413.7 MB)
+2016-12-20 01:37:08,508 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 2.0 in stage 8.0 (TID 15, datanode1, partition 2, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:08,509 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 15 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:08,509 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 8.0 (TID 13) in 182 ms on datanode1 (1/6)
+2016-12-20 01:37:08,519 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 4 to 10.0.0.6:58635
+2016-12-20 01:37:08,520 INFO  [map-output-dispatcher-3] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 4 is 177 bytes
+2016-12-20 01:37:08,576 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 3.0 in stage 8.0 (TID 16, datanode4, partition 3, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:08,576 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 16 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:08,577 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 8.0 (TID 14) in 249 ms on datanode4 (2/6)
+2016-12-20 01:37:08,631 INFO  [dispatcher-event-loop-0] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 4 to 10.0.0.9:46524
+2016-12-20 01:37:08,763 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 4.0 in stage 8.0 (TID 17, datanode1, partition 4, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:08,764 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 17 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:08,764 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 2.0 in stage 8.0 (TID 15) in 257 ms on datanode1 (3/6)
+2016-12-20 01:37:08,884 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 5.0 in stage 8.0 (TID 18, datanode4, partition 5, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:08,885 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 18 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:08,885 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 3.0 in stage 8.0 (TID 16) in 310 ms on datanode4 (4/6)
+2016-12-20 01:37:08,940 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 4.0 in stage 8.0 (TID 17) in 177 ms on datanode1 (5/6)
+2016-12-20 01:37:09,056 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 5.0 in stage 8.0 (TID 18) in 173 ms on datanode4 (6/6)
+2016-12-20 01:37:09,056 INFO  [task-result-getter-2] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 8.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:09,057 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ShuffleMapStage 8 (subtractByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:63) finished in 0,730 s
+2016-12-20 01:37:09,057 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - looking for newly runnable stages
+2016-12-20 01:37:09,057 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - running: Set()
+2016-12-20 01:37:09,057 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - waiting: Set(ShuffleMapStage 9, ResultStage 10)
+2016-12-20 01:37:09,057 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - failed: Set()
+2016-12-20 01:37:09,059 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ShuffleMapStage 9 (PairwiseRDD[33] at fullOuterJoin at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:69), which has no missing parents
+2016-12-20 01:37:09,062 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_10 stored as values in memory (estimated size 14.7 KB, free 365.3 MB)
+2016-12-20 01:37:09,064 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_10_piece0 stored as bytes in memory (estimated size 7.8 KB, free 365.3 MB)
+2016-12-20 01:37:09,065 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_10_piece0 in memory on 10.0.0.4:46178 (size: 7.8 KB, free: 366.2 MB)
+2016-12-20 01:37:09,065 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 10 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:09,066 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 8 missing tasks from ShuffleMapStage 9 (PairwiseRDD[33] at fullOuterJoin at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:69)
+2016-12-20 01:37:09,066 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 9.0 with 8 tasks
+2016-12-20 01:37:09,078 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 9.0 (TID 19, datanode1, partition 0, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:09,079 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 9.0 (TID 20, datanode4, partition 1, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:09,079 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 19 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:09,079 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 20 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:09,094 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_10_piece0 in memory on datanode1:54040 (size: 7.8 KB, free: 413.6 MB)
+2016-12-20 01:37:09,095 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_10_piece0 in memory on datanode4:41658 (size: 7.8 KB, free: 413.6 MB)
+2016-12-20 01:37:09,101 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 3 to 10.0.0.6:58635
+2016-12-20 01:37:09,102 INFO  [map-output-dispatcher-4] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 3 is 191 bytes
+2016-12-20 01:37:09,103 INFO  [dispatcher-event-loop-0] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 3 to 10.0.0.9:46524
+2016-12-20 01:37:09,232 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 2.0 in stage 9.0 (TID 21, datanode4, partition 2, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:09,232 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 21 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:09,233 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 9.0 (TID 20) in 154 ms on datanode4 (1/8)
+2016-12-20 01:37:09,238 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 3.0 in stage 9.0 (TID 22, datanode1, partition 3, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:09,238 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 22 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:09,241 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 9.0 (TID 19) in 174 ms on datanode1 (2/8)
+2016-12-20 01:37:09,400 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 4.0 in stage 9.0 (TID 23, datanode1, partition 4, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:09,400 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 23 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:09,401 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 3.0 in stage 9.0 (TID 22) in 163 ms on datanode1 (3/8)
+2016-12-20 01:37:09,417 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 5.0 in stage 9.0 (TID 24, datanode4, partition 5, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:09,417 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 24 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:09,417 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 2.0 in stage 9.0 (TID 21) in 185 ms on datanode4 (4/8)
+2016-12-20 01:37:09,550 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 5.0 in stage 9.0 (TID 24) in 134 ms on datanode4 (5/8)
+2016-12-20 01:37:09,566 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 6.0 in stage 9.0 (TID 25, datanode1, partition 6, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:09,566 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 25 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:09,567 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 4.0 in stage 9.0 (TID 23) in 166 ms on datanode1 (6/8)
+2016-12-20 01:37:09,575 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 2 to 10.0.0.6:58635
+2016-12-20 01:37:09,576 INFO  [map-output-dispatcher-6] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 2 is 151 bytes
+2016-12-20 01:37:09,696 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 7.0 in stage 9.0 (TID 26, datanode1, partition 7, NODE_LOCAL, 5275 bytes)
+2016-12-20 01:37:09,696 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 26 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:09,696 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 6.0 in stage 9.0 (TID 25) in 131 ms on datanode1 (7/8)
+2016-12-20 01:37:09,879 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 7.0 in stage 9.0 (TID 26) in 184 ms on datanode1 (8/8)
+2016-12-20 01:37:09,879 INFO  [task-result-getter-2] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 9.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:09,880 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ShuffleMapStage 9 (fullOuterJoin at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:69) finished in 0,813 s
+2016-12-20 01:37:09,880 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - looking for newly runnable stages
+2016-12-20 01:37:09,880 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - running: Set()
+2016-12-20 01:37:09,880 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - waiting: Set(ResultStage 10)
+2016-12-20 01:37:09,880 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - failed: Set()
+2016-12-20 01:37:09,880 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 10 (MapPartitionsRDD[38] at saveAsTextFile at NativeMethodAccessorImpl.java:-2), which has no missing parents
+2016-12-20 01:37:09,890 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_11 stored as values in memory (estimated size 79.9 KB, free 365.2 MB)
+2016-12-20 01:37:09,892 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_11_piece0 stored as bytes in memory (estimated size 31.1 KB, free 365.2 MB)
+2016-12-20 01:37:09,892 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_11_piece0 in memory on 10.0.0.4:46178 (size: 31.1 KB, free: 366.2 MB)
+2016-12-20 01:37:09,893 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 11 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:09,893 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 8 missing tasks from ResultStage 10 (MapPartitionsRDD[38] at saveAsTextFile at NativeMethodAccessorImpl.java:-2)
+2016-12-20 01:37:09,893 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 10.0 with 8 tasks
+2016-12-20 01:37:09,894 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 10.0 (TID 27, datanode4, partition 1, NODE_LOCAL, 5177 bytes)
+2016-12-20 01:37:09,895 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 10.0 (TID 28, datanode1, partition 0, NODE_LOCAL, 5177 bytes)
+2016-12-20 01:37:09,895 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 27 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:09,895 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 28 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:09,910 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_11_piece0 in memory on datanode4:41658 (size: 31.1 KB, free: 413.6 MB)
+2016-12-20 01:37:09,918 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_11_piece0 in memory on datanode1:54040 (size: 31.1 KB, free: 413.6 MB)
+2016-12-20 01:37:09,960 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 1 to 10.0.0.9:46524
+2016-12-20 01:37:09,960 INFO  [map-output-dispatcher-7] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 1 is 208 bytes
+2016-12-20 01:37:09,974 INFO  [dispatcher-event-loop-0] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 1 to 10.0.0.6:58635
+2016-12-20 01:37:10,422 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 3.0 in stage 10.0 (TID 29, datanode4, partition 3, NODE_LOCAL, 5177 bytes)
+2016-12-20 01:37:10,422 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 29 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:10,423 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 10.0 (TID 27) in 529 ms on datanode4 (1/8)
+2016-12-20 01:37:10,558 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 2.0 in stage 10.0 (TID 30, datanode1, partition 2, NODE_LOCAL, 5177 bytes)
+2016-12-20 01:37:10,559 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 30 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:10,559 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 10.0 (TID 28) in 664 ms on datanode1 (2/8)
+2016-12-20 01:37:10,695 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 5.0 in stage 10.0 (TID 31, datanode4, partition 5, NODE_LOCAL, 5177 bytes)
+2016-12-20 01:37:10,695 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 31 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:10,695 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 3.0 in stage 10.0 (TID 29) in 274 ms on datanode4 (3/8)
+2016-12-20 01:37:10,785 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 4.0 in stage 10.0 (TID 32, datanode1, partition 4, NODE_LOCAL, 5177 bytes)
+2016-12-20 01:37:10,785 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 32 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:10,786 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 2.0 in stage 10.0 (TID 30) in 228 ms on datanode1 (4/8)
+2016-12-20 01:37:10,978 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 7.0 in stage 10.0 (TID 33, datanode4, partition 7, NODE_LOCAL, 5177 bytes)
+2016-12-20 01:37:10,978 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 33 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:10,978 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 5.0 in stage 10.0 (TID 31) in 284 ms on datanode4 (5/8)
+2016-12-20 01:37:11,020 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 6.0 in stage 10.0 (TID 34, datanode1, partition 6, NODE_LOCAL, 5177 bytes)
+2016-12-20 01:37:11,020 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 34 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:11,021 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 4.0 in stage 10.0 (TID 32) in 236 ms on datanode1 (6/8)
+2016-12-20 01:37:11,707 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 7.0 in stage 10.0 (TID 33) in 730 ms on datanode4 (7/8)
+2016-12-20 01:37:11,722 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 6.0 in stage 10.0 (TID 34) in 702 ms on datanode1 (8/8)
+2016-12-20 01:37:11,722 INFO  [task-result-getter-2] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 10.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:11,723 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 10 (saveAsTextFile at NativeMethodAccessorImpl.java:-2) finished in 1,829 s
+2016-12-20 01:37:11,723 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 3 finished: saveAsTextFile at NativeMethodAccessorImpl.java:-2, took 7,633021 s
+2016-12-20 01:37:11,989 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89
+2016-12-20 01:37:11,991 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Registering RDD 40 (reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89)
+2016-12-20 01:37:11,992 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 4 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89) with 2 output partitions
+2016-12-20 01:37:11,992 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 12 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89)
+2016-12-20 01:37:11,992 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List(ShuffleMapStage 11)
+2016-12-20 01:37:11,992 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List(ShuffleMapStage 11)
+2016-12-20 01:37:11,993 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ShuffleMapStage 11 (PairwiseRDD[40] at reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89), which has no missing parents
+2016-12-20 01:37:11,994 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_12 stored as values in memory (estimated size 9.6 KB, free 365.2 MB)
+2016-12-20 01:37:11,995 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_12_piece0 stored as bytes in memory (estimated size 6.0 KB, free 365.2 MB)
+2016-12-20 01:37:11,996 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_12_piece0 in memory on 10.0.0.4:46178 (size: 6.0 KB, free: 366.1 MB)
+2016-12-20 01:37:11,996 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 12 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:11,999 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ShuffleMapStage 11 (PairwiseRDD[40] at reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89)
+2016-12-20 01:37:11,999 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 11.0 with 2 tasks
+2016-12-20 01:37:12,001 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 11.0 (TID 35, datanode4, partition 0, PROCESS_LOCAL, 5505 bytes)
+2016-12-20 01:37:12,002 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 11.0 (TID 36, datanode1, partition 1, PROCESS_LOCAL, 5505 bytes)
+2016-12-20 01:37:12,002 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 35 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:12,002 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 36 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:12,015 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_12_piece0 in memory on datanode4:41658 (size: 6.0 KB, free: 413.6 MB)
+2016-12-20 01:37:12,019 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_12_piece0 in memory on datanode1:54040 (size: 6.0 KB, free: 413.6 MB)
+2016-12-20 01:37:12,070 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 11.0 (TID 35) in 69 ms on datanode4 (1/2)
+2016-12-20 01:37:12,077 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 11.0 (TID 36) in 75 ms on datanode1 (2/2)
+2016-12-20 01:37:12,077 INFO  [task-result-getter-0] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 11.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:12,077 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ShuffleMapStage 11 (reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89) finished in 0,077 s
+2016-12-20 01:37:12,077 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - looking for newly runnable stages
+2016-12-20 01:37:12,077 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - running: Set()
+2016-12-20 01:37:12,077 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - waiting: Set(ResultStage 12)
+2016-12-20 01:37:12,077 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - failed: Set()
+2016-12-20 01:37:12,078 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 12 (PythonRDD[43] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89), which has no missing parents
+2016-12-20 01:37:12,079 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_13 stored as values in memory (estimated size 7.1 KB, free 365.1 MB)
+2016-12-20 01:37:12,081 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_13_piece0 stored as bytes in memory (estimated size 4.3 KB, free 365.1 MB)
+2016-12-20 01:37:12,081 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_13_piece0 in memory on 10.0.0.4:46178 (size: 4.3 KB, free: 366.1 MB)
+2016-12-20 01:37:12,082 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 13 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:12,082 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ResultStage 12 (PythonRDD[43] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89)
+2016-12-20 01:37:12,082 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 12.0 with 2 tasks
+2016-12-20 01:37:12,083 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 12.0 (TID 37, datanode4, partition 0, NODE_LOCAL, 5253 bytes)
+2016-12-20 01:37:12,084 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 12.0 (TID 38, datanode1, partition 1, NODE_LOCAL, 5253 bytes)
+2016-12-20 01:37:12,084 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 37 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:12,084 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 38 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:12,099 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_13_piece0 in memory on datanode1:54040 (size: 4.3 KB, free: 413.6 MB)
+2016-12-20 01:37:12,104 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 5 to 10.0.0.6:58635
+2016-12-20 01:37:12,104 INFO  [map-output-dispatcher-2] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 5 is 160 bytes
+2016-12-20 01:37:12,109 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_13_piece0 in memory on datanode4:41658 (size: 4.3 KB, free: 413.6 MB)
+2016-12-20 01:37:12,119 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 5 to 10.0.0.9:46524
+2016-12-20 01:37:12,161 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 12.0 (TID 38) in 78 ms on datanode1 (1/2)
+2016-12-20 01:37:12,181 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 12.0 (TID 37) in 98 ms on datanode4 (2/2)
+2016-12-20 01:37:12,182 INFO  [task-result-getter-2] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 12.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:12,183 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 12 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89) finished in 0,100 s
+2016-12-20 01:37:12,183 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 4 finished: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89, took 0,192403 s
+2016-12-20 01:37:12,196 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89
+2016-12-20 01:37:12,203 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 5 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89) with 2 output partitions
+2016-12-20 01:37:12,203 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 14 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89)
+2016-12-20 01:37:12,203 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List(ShuffleMapStage 13)
+2016-12-20 01:37:12,203 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List()
+2016-12-20 01:37:12,205 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 14 (PythonRDD[44] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89), which has no missing parents
+2016-12-20 01:37:12,207 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_14 stored as values in memory (estimated size 7.2 KB, free 365.1 MB)
+2016-12-20 01:37:12,208 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_14_piece0 stored as bytes in memory (estimated size 4.4 KB, free 365.1 MB)
+2016-12-20 01:37:12,208 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_14_piece0 in memory on 10.0.0.4:46178 (size: 4.4 KB, free: 366.1 MB)
+2016-12-20 01:37:12,209 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 14 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:12,209 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ResultStage 14 (PythonRDD[44] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89)
+2016-12-20 01:37:12,209 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 14.0 with 2 tasks
+2016-12-20 01:37:12,212 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 14.0 (TID 39, datanode4, partition 0, NODE_LOCAL, 5253 bytes)
+2016-12-20 01:37:12,213 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 14.0 (TID 40, datanode1, partition 1, NODE_LOCAL, 5253 bytes)
+2016-12-20 01:37:12,213 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 39 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:12,213 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 40 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:12,224 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_14_piece0 in memory on datanode1:54040 (size: 4.4 KB, free: 413.6 MB)
+2016-12-20 01:37:12,224 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_14_piece0 in memory on datanode4:41658 (size: 4.4 KB, free: 413.6 MB)
+2016-12-20 01:37:12,288 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 14.0 (TID 39) in 77 ms on datanode4 (1/2)
+2016-12-20 01:37:12,290 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 14.0 (TID 40) in 77 ms on datanode1 (2/2)
+2016-12-20 01:37:12,290 INFO  [task-result-getter-0] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 14.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:12,291 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 14 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89) finished in 0,081 s
+2016-12-20 01:37:12,291 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 5 finished: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89, took 0,089206 s
+2016-12-20 01:37:12,342 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101
+2016-12-20 01:37:12,343 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Registering RDD 46 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89)
+2016-12-20 01:37:12,343 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Registering RDD 50 (reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101)
+2016-12-20 01:37:12,343 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 6 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101) with 2 output partitions
+2016-12-20 01:37:12,343 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 18 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101)
+2016-12-20 01:37:12,343 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List(ShuffleMapStage 17)
+2016-12-20 01:37:12,344 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List(ShuffleMapStage 17)
+2016-12-20 01:37:12,344 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ShuffleMapStage 16 (PairwiseRDD[46] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89), which has no missing parents
+2016-12-20 01:37:12,346 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_15 stored as values in memory (estimated size 7.9 KB, free 365.1 MB)
+2016-12-20 01:37:12,347 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_15_piece0 stored as bytes in memory (estimated size 4.9 KB, free 365.1 MB)
+2016-12-20 01:37:12,347 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_15_piece0 in memory on 10.0.0.4:46178 (size: 4.9 KB, free: 366.1 MB)
+2016-12-20 01:37:12,348 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 15 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:12,348 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ShuffleMapStage 16 (PairwiseRDD[46] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89)
+2016-12-20 01:37:12,348 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 16.0 with 2 tasks
+2016-12-20 01:37:12,349 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 16.0 (TID 41, datanode1, partition 0, NODE_LOCAL, 5243 bytes)
+2016-12-20 01:37:12,350 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 16.0 (TID 42, datanode4, partition 1, NODE_LOCAL, 5243 bytes)
+2016-12-20 01:37:12,350 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 41 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:12,350 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 42 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:12,361 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_15_piece0 in memory on datanode4:41658 (size: 4.9 KB, free: 413.6 MB)
+2016-12-20 01:37:12,364 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_15_piece0 in memory on datanode1:54040 (size: 4.9 KB, free: 413.5 MB)
+2016-12-20 01:37:12,435 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 16.0 (TID 42) in 85 ms on datanode4 (1/2)
+2016-12-20 01:37:12,444 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 16.0 (TID 41) in 95 ms on datanode1 (2/2)
+2016-12-20 01:37:12,445 INFO  [task-result-getter-2] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 16.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:12,445 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ShuffleMapStage 16 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:89) finished in 0,096 s
+2016-12-20 01:37:12,445 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - looking for newly runnable stages
+2016-12-20 01:37:12,445 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - running: Set()
+2016-12-20 01:37:12,445 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - waiting: Set(ShuffleMapStage 17, ResultStage 18)
+2016-12-20 01:37:12,445 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - failed: Set()
+2016-12-20 01:37:12,445 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ShuffleMapStage 17 (PairwiseRDD[50] at reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101), which has no missing parents
+2016-12-20 01:37:12,447 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_16 stored as values in memory (estimated size 8.6 KB, free 365.1 MB)
+2016-12-20 01:37:12,448 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_16_piece0 stored as bytes in memory (estimated size 5.4 KB, free 365.1 MB)
+2016-12-20 01:37:12,448 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_16_piece0 in memory on 10.0.0.4:46178 (size: 5.4 KB, free: 366.1 MB)
+2016-12-20 01:37:12,449 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 16 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:12,449 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ShuffleMapStage 17 (PairwiseRDD[50] at reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101)
+2016-12-20 01:37:12,449 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 17.0 with 2 tasks
+2016-12-20 01:37:12,450 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 17.0 (TID 43, datanode4, partition 0, NODE_LOCAL, 5243 bytes)
+2016-12-20 01:37:12,451 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 17.0 (TID 44, datanode1, partition 1, NODE_LOCAL, 5243 bytes)
+2016-12-20 01:37:12,451 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 43 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:12,451 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 44 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:12,463 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_16_piece0 in memory on datanode4:41658 (size: 5.4 KB, free: 413.6 MB)
+2016-12-20 01:37:12,465 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_16_piece0 in memory on datanode1:54040 (size: 5.4 KB, free: 413.5 MB)
+2016-12-20 01:37:12,469 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 7 to 10.0.0.9:46524
+2016-12-20 01:37:12,470 INFO  [map-output-dispatcher-1] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 7 is 158 bytes
+2016-12-20 01:37:12,470 INFO  [dispatcher-event-loop-0] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 7 to 10.0.0.6:58635
+2016-12-20 01:37:12,548 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 17.0 (TID 43) in 98 ms on datanode4 (1/2)
+2016-12-20 01:37:12,549 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 17.0 (TID 44) in 99 ms on datanode1 (2/2)
+2016-12-20 01:37:12,549 INFO  [task-result-getter-0] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 17.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:12,550 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ShuffleMapStage 17 (reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101) finished in 0,101 s
+2016-12-20 01:37:12,550 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - looking for newly runnable stages
+2016-12-20 01:37:12,550 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - running: Set()
+2016-12-20 01:37:12,550 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - waiting: Set(ResultStage 18)
+2016-12-20 01:37:12,550 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - failed: Set()
+2016-12-20 01:37:12,551 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 18 (PythonRDD[53] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101), which has no missing parents
+2016-12-20 01:37:12,552 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_17 stored as values in memory (estimated size 7.1 KB, free 365.1 MB)
+2016-12-20 01:37:12,553 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_17_piece0 stored as bytes in memory (estimated size 4.3 KB, free 365.1 MB)
+2016-12-20 01:37:12,553 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_17_piece0 in memory on 10.0.0.4:46178 (size: 4.3 KB, free: 366.1 MB)
+2016-12-20 01:37:12,554 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 17 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:12,554 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ResultStage 18 (PythonRDD[53] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101)
+2016-12-20 01:37:12,554 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 18.0 with 2 tasks
+2016-12-20 01:37:12,556 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 18.0 (TID 45, datanode4, partition 0, NODE_LOCAL, 5254 bytes)
+2016-12-20 01:37:12,557 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 18.0 (TID 46, datanode1, partition 1, NODE_LOCAL, 5254 bytes)
+2016-12-20 01:37:12,557 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 45 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:12,557 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 46 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:12,567 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_17_piece0 in memory on datanode4:41658 (size: 4.3 KB, free: 413.6 MB)
+2016-12-20 01:37:12,570 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_17_piece0 in memory on datanode1:54040 (size: 4.3 KB, free: 413.5 MB)
+2016-12-20 01:37:12,572 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 6 to 10.0.0.9:46524
+2016-12-20 01:37:12,573 INFO  [map-output-dispatcher-5] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 6 is 161 bytes
+2016-12-20 01:37:12,573 INFO  [dispatcher-event-loop-0] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 6 to 10.0.0.6:58635
+2016-12-20 01:37:12,633 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 18.0 (TID 45) in 77 ms on datanode4 (1/2)
+2016-12-20 01:37:12,635 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 18.0 (TID 46) in 79 ms on datanode1 (2/2)
+2016-12-20 01:37:12,635 INFO  [task-result-getter-2] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 18.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:12,636 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 18 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101) finished in 0,081 s
+2016-12-20 01:37:12,636 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 6 finished: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101, took 0,294133 s
+2016-12-20 01:37:12,655 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101
+2016-12-20 01:37:12,656 INFO  [dag-scheduler-event-loop] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 5 is 160 bytes
+2016-12-20 01:37:12,657 INFO  [dag-scheduler-event-loop] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 7 is 158 bytes
+2016-12-20 01:37:12,657 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 7 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101) with 2 output partitions
+2016-12-20 01:37:12,657 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 22 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101)
+2016-12-20 01:37:12,657 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List(ShuffleMapStage 21)
+2016-12-20 01:37:12,657 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List()
+2016-12-20 01:37:12,658 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 22 (PythonRDD[54] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101), which has no missing parents
+2016-12-20 01:37:12,662 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_18 stored as values in memory (estimated size 7.2 KB, free 365.1 MB)
+2016-12-20 01:37:12,663 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_18_piece0 stored as bytes in memory (estimated size 4.4 KB, free 365.1 MB)
+2016-12-20 01:37:12,664 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_18_piece0 in memory on 10.0.0.4:46178 (size: 4.4 KB, free: 366.1 MB)
+2016-12-20 01:37:12,665 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 18 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:12,666 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ResultStage 22 (PythonRDD[54] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101)
+2016-12-20 01:37:12,666 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 22.0 with 2 tasks
+2016-12-20 01:37:12,669 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 22.0 (TID 47, datanode4, partition 0, NODE_LOCAL, 5254 bytes)
+2016-12-20 01:37:12,669 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 22.0 (TID 48, datanode1, partition 1, NODE_LOCAL, 5254 bytes)
+2016-12-20 01:37:12,669 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 47 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:12,669 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 48 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:12,687 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_18_piece0 in memory on datanode4:41658 (size: 4.4 KB, free: 413.6 MB)
+2016-12-20 01:37:12,688 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_18_piece0 in memory on datanode1:54040 (size: 4.4 KB, free: 413.5 MB)
+2016-12-20 01:37:12,749 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 22.0 (TID 47) in 80 ms on datanode4 (1/2)
+2016-12-20 01:37:12,758 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 22.0 (TID 48) in 88 ms on datanode1 (2/2)
+2016-12-20 01:37:12,758 INFO  [task-result-getter-0] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 22.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:12,758 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 22 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101) finished in 0,090 s
+2016-12-20 01:37:12,758 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 7 finished: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:101, took 0,103331 s
+2016-12-20 01:37:12,946 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106
+2016-12-20 01:37:12,951 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Registering RDD 60 (reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106)
+2016-12-20 01:37:12,951 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 8 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106) with 2 output partitions
+2016-12-20 01:37:12,951 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 26 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106)
+2016-12-20 01:37:12,951 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List(ShuffleMapStage 25)
+2016-12-20 01:37:12,956 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List(ShuffleMapStage 25)
+2016-12-20 01:37:12,962 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ShuffleMapStage 25 (PairwiseRDD[60] at reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106), which has no missing parents
+2016-12-20 01:37:12,964 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_19 stored as values in memory (estimated size 8.7 KB, free 365.1 MB)
+2016-12-20 01:37:12,966 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_19_piece0 stored as bytes in memory (estimated size 5.5 KB, free 365.1 MB)
+2016-12-20 01:37:12,978 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_10_piece0 on datanode4:41658 in memory (size: 7.8 KB, free: 413.6 MB)
+2016-12-20 01:37:12,978 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_19_piece0 in memory on 10.0.0.4:46178 (size: 5.5 KB, free: 366.1 MB)
+2016-12-20 01:37:12,978 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_10_piece0 on datanode1:54040 in memory (size: 7.8 KB, free: 413.5 MB)
+2016-12-20 01:37:12,984 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 19 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:12,984 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ShuffleMapStage 25 (PairwiseRDD[60] at reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106)
+2016-12-20 01:37:12,985 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 25.0 with 2 tasks
+2016-12-20 01:37:12,987 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_10_piece0 on 10.0.0.4:46178 in memory (size: 7.8 KB, free: 366.1 MB)
+2016-12-20 01:37:12,993 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 25.0 (TID 49, datanode1, partition 0, NODE_LOCAL, 5244 bytes)
+2016-12-20 01:37:12,993 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 25.0 (TID 50, datanode4, partition 1, NODE_LOCAL, 5244 bytes)
+2016-12-20 01:37:12,993 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 49 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:12,993 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 50 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:13,006 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_11_piece0 on 10.0.0.4:46178 in memory (size: 31.1 KB, free: 366.2 MB)
+2016-12-20 01:37:13,007 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_19_piece0 in memory on datanode4:41658 (size: 5.5 KB, free: 413.6 MB)
+2016-12-20 01:37:13,010 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_11_piece0 on datanode1:54040 in memory (size: 31.1 KB, free: 413.6 MB)
+2016-12-20 01:37:13,010 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_11_piece0 on datanode4:41658 in memory (size: 31.1 KB, free: 413.6 MB)
+2016-12-20 01:37:13,011 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 7 to 10.0.0.9:46524
+2016-12-20 01:37:13,015 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_12_piece0 on 10.0.0.4:46178 in memory (size: 6.0 KB, free: 366.2 MB)
+2016-12-20 01:37:13,017 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_12_piece0 on datanode4:41658 in memory (size: 6.0 KB, free: 413.6 MB)
+2016-12-20 01:37:13,018 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_12_piece0 on datanode1:54040 in memory (size: 6.0 KB, free: 413.6 MB)
+2016-12-20 01:37:13,019 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_19_piece0 in memory on datanode1:54040 (size: 5.5 KB, free: 413.6 MB)
+2016-12-20 01:37:13,023 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 7 to 10.0.0.6:58635
+2016-12-20 01:37:13,024 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_13_piece0 on 10.0.0.4:46178 in memory (size: 4.3 KB, free: 366.2 MB)
+2016-12-20 01:37:13,026 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_13_piece0 on datanode1:54040 in memory (size: 4.3 KB, free: 413.6 MB)
+2016-12-20 01:37:13,027 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_13_piece0 on datanode4:41658 in memory (size: 4.3 KB, free: 413.6 MB)
+2016-12-20 01:37:13,040 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_14_piece0 on 10.0.0.4:46178 in memory (size: 4.4 KB, free: 366.2 MB)
+2016-12-20 01:37:13,042 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_14_piece0 on datanode4:41658 in memory (size: 4.4 KB, free: 413.6 MB)
+2016-12-20 01:37:13,045 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_14_piece0 on datanode1:54040 in memory (size: 4.4 KB, free: 413.6 MB)
+2016-12-20 01:37:13,047 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_15_piece0 on 10.0.0.4:46178 in memory (size: 4.9 KB, free: 366.2 MB)
+2016-12-20 01:37:13,049 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_15_piece0 on datanode1:54040 in memory (size: 4.9 KB, free: 413.6 MB)
+2016-12-20 01:37:13,051 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_15_piece0 on datanode4:41658 in memory (size: 4.9 KB, free: 413.6 MB)
+2016-12-20 01:37:13,053 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_16_piece0 on 10.0.0.4:46178 in memory (size: 5.4 KB, free: 366.2 MB)
+2016-12-20 01:37:13,055 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_16_piece0 on datanode4:41658 in memory (size: 5.4 KB, free: 413.6 MB)
+2016-12-20 01:37:13,056 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_16_piece0 on datanode1:54040 in memory (size: 5.4 KB, free: 413.6 MB)
+2016-12-20 01:37:13,059 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_17_piece0 on 10.0.0.4:46178 in memory (size: 4.3 KB, free: 366.2 MB)
+2016-12-20 01:37:13,061 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_17_piece0 on datanode1:54040 in memory (size: 4.3 KB, free: 413.6 MB)
+2016-12-20 01:37:13,062 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_17_piece0 on datanode4:41658 in memory (size: 4.3 KB, free: 413.6 MB)
+2016-12-20 01:37:13,065 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_18_piece0 on 10.0.0.4:46178 in memory (size: 4.4 KB, free: 366.2 MB)
+2016-12-20 01:37:13,067 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_18_piece0 on datanode1:54040 in memory (size: 4.4 KB, free: 413.6 MB)
+2016-12-20 01:37:13,077 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_18_piece0 on datanode4:41658 in memory (size: 4.4 KB, free: 413.6 MB)
+2016-12-20 01:37:13,083 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_1_piece0 on 10.0.0.4:46178 in memory (size: 5.8 KB, free: 366.2 MB)
+2016-12-20 01:37:13,086 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_1_piece0 on datanode1:54040 in memory (size: 5.8 KB, free: 413.6 MB)
+2016-12-20 01:37:13,096 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 25.0 (TID 50) in 102 ms on datanode4 (1/2)
+2016-12-20 01:37:13,097 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_2_piece0 on 10.0.0.4:46178 in memory (size: 4.3 KB, free: 366.2 MB)
+2016-12-20 01:37:13,099 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_2_piece0 on datanode1:54040 in memory (size: 4.3 KB, free: 413.6 MB)
+2016-12-20 01:37:13,102 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_3_piece0 on 10.0.0.4:46178 in memory (size: 4.4 KB, free: 366.2 MB)
+2016-12-20 01:37:13,103 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 25.0 (TID 49) in 116 ms on datanode1 (2/2)
+2016-12-20 01:37:13,103 INFO  [task-result-getter-2] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 25.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:13,103 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_3_piece0 on datanode1:54040 in memory (size: 4.4 KB, free: 413.6 MB)
+2016-12-20 01:37:13,104 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ShuffleMapStage 25 (reduceByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106) finished in 0,117 s
+2016-12-20 01:37:13,104 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - looking for newly runnable stages
+2016-12-20 01:37:13,104 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - running: Set()
+2016-12-20 01:37:13,104 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - waiting: Set(ResultStage 26)
+2016-12-20 01:37:13,104 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - failed: Set()
+2016-12-20 01:37:13,104 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 26 (PythonRDD[63] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106), which has no missing parents
+2016-12-20 01:37:13,106 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_20 stored as values in memory (estimated size 7.2 KB, free 365.3 MB)
+2016-12-20 01:37:13,108 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_6_piece0 on 10.0.0.4:46178 in memory (size: 1996.0 B, free: 366.2 MB)
+2016-12-20 01:37:13,108 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_20_piece0 stored as bytes in memory (estimated size 4.4 KB, free 365.3 MB)
+2016-12-20 01:37:13,109 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_20_piece0 in memory on 10.0.0.4:46178 (size: 4.4 KB, free: 366.2 MB)
+2016-12-20 01:37:13,109 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_6_piece0 on datanode1:54040 in memory (size: 1996.0 B, free: 413.6 MB)
+2016-12-20 01:37:13,112 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 20 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:13,112 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ResultStage 26 (PythonRDD[63] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106)
+2016-12-20 01:37:13,112 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 26.0 with 2 tasks
+2016-12-20 01:37:13,114 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 26.0 (TID 51, datanode1, partition 0, NODE_LOCAL, 5255 bytes)
+2016-12-20 01:37:13,114 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 26.0 (TID 52, datanode4, partition 1, NODE_LOCAL, 5255 bytes)
+2016-12-20 01:37:13,114 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 51 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:13,114 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 52 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:13,116 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_7_piece0 on 10.0.0.4:46178 in memory (size: 4.9 KB, free: 366.2 MB)
+2016-12-20 01:37:13,120 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_7_piece0 on datanode1:54040 in memory (size: 4.9 KB, free: 413.6 MB)
+2016-12-20 01:37:13,124 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_8_piece0 on 10.0.0.4:46178 in memory (size: 7.7 KB, free: 366.2 MB)
+2016-12-20 01:37:13,126 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_20_piece0 in memory on datanode4:41658 (size: 4.4 KB, free: 413.6 MB)
+2016-12-20 01:37:13,127 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_20_piece0 in memory on datanode1:54040 (size: 4.4 KB, free: 413.6 MB)
+2016-12-20 01:37:13,127 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_8_piece0 on datanode4:41658 in memory (size: 7.7 KB, free: 413.6 MB)
+2016-12-20 01:37:13,128 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_8_piece0 on datanode1:54040 in memory (size: 7.7 KB, free: 413.6 MB)
+2016-12-20 01:37:13,130 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 8 to 10.0.0.9:46524
+2016-12-20 01:37:13,130 INFO  [map-output-dispatcher-2] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 8 is 161 bytes
+2016-12-20 01:37:13,131 INFO  [dispatcher-event-loop-0] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 8 to 10.0.0.6:58635
+2016-12-20 01:37:13,132 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_9_piece0 on 10.0.0.4:46178 in memory (size: 8.9 KB, free: 366.2 MB)
+2016-12-20 01:37:13,134 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_9_piece0 on datanode1:54040 in memory (size: 8.9 KB, free: 413.6 MB)
+2016-12-20 01:37:13,137 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Removed broadcast_9_piece0 on datanode4:41658 in memory (size: 8.9 KB, free: 413.7 MB)
+2016-12-20 01:37:13,194 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 26.0 (TID 52) in 80 ms on datanode4 (1/2)
+2016-12-20 01:37:13,195 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 26.0 (TID 51) in 82 ms on datanode1 (2/2)
+2016-12-20 01:37:13,195 INFO  [task-result-getter-0] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 26.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:13,196 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 26 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106) finished in 0,078 s
+2016-12-20 01:37:13,196 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 8 finished: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106, took 0,249430 s
+2016-12-20 01:37:13,209 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106
+2016-12-20 01:37:13,211 INFO  [dag-scheduler-event-loop] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 5 is 160 bytes
+2016-12-20 01:37:13,211 INFO  [dag-scheduler-event-loop] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 7 is 158 bytes
+2016-12-20 01:37:13,212 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 9 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106) with 2 output partitions
+2016-12-20 01:37:13,212 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 30 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106)
+2016-12-20 01:37:13,212 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List(ShuffleMapStage 29)
+2016-12-20 01:37:13,212 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List()
+2016-12-20 01:37:13,213 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 30 (PythonRDD[64] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106), which has no missing parents
+2016-12-20 01:37:13,214 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_21 stored as values in memory (estimated size 7.3 KB, free 365.4 MB)
+2016-12-20 01:37:13,215 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_21_piece0 stored as bytes in memory (estimated size 4.5 KB, free 365.4 MB)
+2016-12-20 01:37:13,216 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_21_piece0 in memory on 10.0.0.4:46178 (size: 4.5 KB, free: 366.2 MB)
+2016-12-20 01:37:13,216 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 21 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:13,216 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ResultStage 30 (PythonRDD[64] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106)
+2016-12-20 01:37:13,216 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 30.0 with 2 tasks
+2016-12-20 01:37:13,217 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 30.0 (TID 53, datanode4, partition 0, NODE_LOCAL, 5255 bytes)
+2016-12-20 01:37:13,218 INFO  [dispatcher-event-loop-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 30.0 (TID 54, datanode1, partition 1, NODE_LOCAL, 5255 bytes)
+2016-12-20 01:37:13,218 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 53 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:13,218 INFO  [dispatcher-event-loop-1] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 54 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:13,228 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_21_piece0 in memory on datanode4:41658 (size: 4.5 KB, free: 413.7 MB)
+2016-12-20 01:37:13,231 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_21_piece0 in memory on datanode1:54040 (size: 4.5 KB, free: 413.6 MB)
+2016-12-20 01:37:13,293 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 30.0 (TID 53) in 76 ms on datanode4 (1/2)
+2016-12-20 01:37:13,298 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 30.0 (TID 54) in 80 ms on datanode1 (2/2)
+2016-12-20 01:37:13,299 INFO  [task-result-getter-2] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 30.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:13,299 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 30 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106) finished in 0,081 s
+2016-12-20 01:37:13,300 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 9 finished: sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106, took 0,089660 s
+2016-12-20 01:37:13,340 INFO  [Thread-3] output.FileOutputCommitter (FileOutputCommitter.java:<init>(108)) - File Output Committer Algorithm version is 1
+2016-12-20 01:37:13,384 INFO  [Thread-3] spark.SparkContext (Logging.scala:logInfo(54)) - Starting job: saveAsTextFile at NativeMethodAccessorImpl.java:-2
+2016-12-20 01:37:13,385 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Registering RDD 66 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106)
+2016-12-20 01:37:13,386 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Got job 10 (saveAsTextFile at NativeMethodAccessorImpl.java:-2) with 2 output partitions
+2016-12-20 01:37:13,386 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Final stage: ResultStage 35 (saveAsTextFile at NativeMethodAccessorImpl.java:-2)
+2016-12-20 01:37:13,386 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Parents of final stage: List(ShuffleMapStage 34)
+2016-12-20 01:37:13,386 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Missing parents: List(ShuffleMapStage 34)
+2016-12-20 01:37:13,386 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ShuffleMapStage 34 (PairwiseRDD[66] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106), which has no missing parents
+2016-12-20 01:37:13,387 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_22 stored as values in memory (estimated size 8.0 KB, free 365.4 MB)
+2016-12-20 01:37:13,391 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_22_piece0 stored as bytes in memory (estimated size 5.1 KB, free 365.4 MB)
+2016-12-20 01:37:13,391 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_22_piece0 in memory on 10.0.0.4:46178 (size: 5.1 KB, free: 366.2 MB)
+2016-12-20 01:37:13,392 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 22 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:13,392 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ShuffleMapStage 34 (PairwiseRDD[66] at sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106)
+2016-12-20 01:37:13,392 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 34.0 with 2 tasks
+2016-12-20 01:37:13,394 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 34.0 (TID 55, datanode4, partition 0, NODE_LOCAL, 5167 bytes)
+2016-12-20 01:37:13,394 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 34.0 (TID 56, datanode1, partition 1, NODE_LOCAL, 5167 bytes)
+2016-12-20 01:37:13,395 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 55 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:13,396 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 56 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:13,412 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_22_piece0 in memory on datanode4:41658 (size: 5.1 KB, free: 413.6 MB)
+2016-12-20 01:37:13,414 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_22_piece0 in memory on datanode1:54040 (size: 5.1 KB, free: 413.6 MB)
+2016-12-20 01:37:13,486 INFO  [task-result-getter-3] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 34.0 (TID 55) in 93 ms on datanode4 (1/2)
+2016-12-20 01:37:13,489 INFO  [task-result-getter-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 34.0 (TID 56) in 95 ms on datanode1 (2/2)
+2016-12-20 01:37:13,490 INFO  [task-result-getter-0] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 34.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:13,491 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ShuffleMapStage 34 (sortByKey at /opt/yarn/Tema5-Spark-notebook/sparkpractica.py:106) finished in 0,097 s
+2016-12-20 01:37:13,491 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - looking for newly runnable stages
+2016-12-20 01:37:13,491 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - running: Set()
+2016-12-20 01:37:13,491 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - waiting: Set(ResultStage 35)
+2016-12-20 01:37:13,491 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - failed: Set()
+2016-12-20 01:37:13,492 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting ResultStage 35 (MapPartitionsRDD[71] at saveAsTextFile at NativeMethodAccessorImpl.java:-2), which has no missing parents
+2016-12-20 01:37:13,508 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_23 stored as values in memory (estimated size 77.4 KB, free 365.3 MB)
+2016-12-20 01:37:13,511 INFO  [dag-scheduler-event-loop] memory.MemoryStore (Logging.scala:logInfo(54)) - Block broadcast_23_piece0 stored as bytes in memory (estimated size 29.5 KB, free 365.2 MB)
+2016-12-20 01:37:13,513 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_23_piece0 in memory on 10.0.0.4:46178 (size: 29.5 KB, free: 366.2 MB)
+2016-12-20 01:37:13,514 INFO  [dag-scheduler-event-loop] spark.SparkContext (Logging.scala:logInfo(54)) - Created broadcast 23 from broadcast at DAGScheduler.scala:1012
+2016-12-20 01:37:13,514 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Submitting 2 missing tasks from ResultStage 35 (MapPartitionsRDD[71] at saveAsTextFile at NativeMethodAccessorImpl.java:-2)
+2016-12-20 01:37:13,514 INFO  [dag-scheduler-event-loop] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Adding task set 35.0 with 2 tasks
+2016-12-20 01:37:13,516 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 0.0 in stage 35.0 (TID 57, datanode1, partition 0, NODE_LOCAL, 5178 bytes)
+2016-12-20 01:37:13,516 INFO  [dispatcher-event-loop-0] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Starting task 1.0 in stage 35.0 (TID 58, datanode4, partition 1, NODE_LOCAL, 5178 bytes)
+2016-12-20 01:37:13,516 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 57 on executor id: 2 hostname: datanode1.
+2016-12-20 01:37:13,517 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Launching task 58 on executor id: 1 hostname: datanode4.
+2016-12-20 01:37:13,528 INFO  [dispatcher-event-loop-1] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_23_piece0 in memory on datanode1:54040 (size: 29.5 KB, free: 413.6 MB)
+2016-12-20 01:37:13,529 INFO  [dispatcher-event-loop-0] storage.BlockManagerInfo (Logging.scala:logInfo(54)) - Added broadcast_23_piece0 in memory on datanode4:41658 (size: 29.5 KB, free: 413.6 MB)
+2016-12-20 01:37:13,543 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 9 to 10.0.0.9:46524
+2016-12-20 01:37:13,543 INFO  [map-output-dispatcher-1] spark.MapOutputTrackerMaster (Logging.scala:logInfo(54)) - Size of output statuses for shuffle 9 is 161 bytes
+2016-12-20 01:37:13,545 INFO  [dispatcher-event-loop-0] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - Asked to send map output locations for shuffle 9 to 10.0.0.6:58635
+2016-12-20 01:37:13,739 INFO  [task-result-getter-1] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 1.0 in stage 35.0 (TID 58) in 222 ms on datanode4 (1/2)
+2016-12-20 01:37:13,756 INFO  [task-result-getter-2] scheduler.TaskSetManager (Logging.scala:logInfo(54)) - Finished task 0.0 in stage 35.0 (TID 57) in 241 ms on datanode1 (2/2)
+2016-12-20 01:37:13,756 INFO  [task-result-getter-2] cluster.YarnScheduler (Logging.scala:logInfo(54)) - Removed TaskSet 35.0, whose tasks have all completed, from pool 
+2016-12-20 01:37:13,757 INFO  [dag-scheduler-event-loop] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - ResultStage 35 (saveAsTextFile at NativeMethodAccessorImpl.java:-2) finished in 0,242 s
+2016-12-20 01:37:13,757 INFO  [Thread-3] scheduler.DAGScheduler (Logging.scala:logInfo(54)) - Job 10 finished: saveAsTextFile at NativeMethodAccessorImpl.java:-2, took 0,373526 s
+2016-12-20 01:37:13,880 INFO  [Thread-5] spark.SparkContext (Logging.scala:logInfo(54)) - Invoking stop() from shutdown hook
+2016-12-20 01:37:13,886 INFO  [Thread-5] server.ServerConnector (AbstractConnector.java:doStop(306)) - Stopped ServerConnector@7d6b009b{HTTP/1.1}{0.0.0.0:4040}
+2016-12-20 01:37:13,887 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@1db9f18d{/stages/stage/kill,null,UNAVAILABLE}
+2016-12-20 01:37:13,887 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@1c5f4a64{/api,null,UNAVAILABLE}
+2016-12-20 01:37:13,888 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@2901fd9{/,null,UNAVAILABLE}
+2016-12-20 01:37:13,888 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@20d41e0f{/static,null,UNAVAILABLE}
+2016-12-20 01:37:13,891 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@70de272d{/executors/threadDump/json,null,UNAVAILABLE}
+2016-12-20 01:37:13,891 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@cb24c7b{/executors/threadDump,null,UNAVAILABLE}
+2016-12-20 01:37:13,891 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@5e3f9b2f{/executors/json,null,UNAVAILABLE}
+2016-12-20 01:37:13,891 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@7634ddc4{/executors,null,UNAVAILABLE}
+2016-12-20 01:37:13,892 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@55c53aaa{/environment/json,null,UNAVAILABLE}
+2016-12-20 01:37:13,892 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@6a470310{/environment,null,UNAVAILABLE}
+2016-12-20 01:37:13,892 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@62f95b46{/storage/rdd/json,null,UNAVAILABLE}
+2016-12-20 01:37:13,893 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@486d77e9{/storage/rdd,null,UNAVAILABLE}
+2016-12-20 01:37:13,893 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@2d3241eb{/storage/json,null,UNAVAILABLE}
+2016-12-20 01:37:13,893 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@1e12afb{/storage,null,UNAVAILABLE}
+2016-12-20 01:37:13,893 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@34a3d3b9{/stages/pool/json,null,UNAVAILABLE}
+2016-12-20 01:37:13,893 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@5e3761ad{/stages/pool,null,UNAVAILABLE}
+2016-12-20 01:37:13,893 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@7e5a54b8{/stages/stage/json,null,UNAVAILABLE}
+2016-12-20 01:37:13,894 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@3eb168ce{/stages/stage,null,UNAVAILABLE}
+2016-12-20 01:37:13,894 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@79027f85{/stages/json,null,UNAVAILABLE}
+2016-12-20 01:37:13,894 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@2530afb9{/stages,null,UNAVAILABLE}
+2016-12-20 01:37:13,894 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@34ae90b0{/jobs/job/json,null,UNAVAILABLE}
+2016-12-20 01:37:13,894 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@4150d487{/jobs/job,null,UNAVAILABLE}
+2016-12-20 01:37:13,895 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@1bbaab0{/jobs/json,null,UNAVAILABLE}
+2016-12-20 01:37:13,895 INFO  [Thread-5] handler.ContextHandler (ContextHandler.java:doStop(865)) - Stopped o.s.j.s.ServletContextHandler@623e763a{/jobs,null,UNAVAILABLE}
+2016-12-20 01:37:13,897 INFO  [Thread-5] ui.SparkUI (Logging.scala:logInfo(54)) - Stopped Spark web UI at http://10.0.0.4:4040
+2016-12-20 01:37:13,903 INFO  [Yarn application state monitor] cluster.YarnClientSchedulerBackend (Logging.scala:logInfo(54)) - Interrupting monitor thread
+2016-12-20 01:37:13,932 INFO  [Thread-5] cluster.YarnClientSchedulerBackend (Logging.scala:logInfo(54)) - Shutting down all executors
+2016-12-20 01:37:13,933 INFO  [dispatcher-event-loop-0] cluster.YarnSchedulerBackend$YarnDriverEndpoint (Logging.scala:logInfo(54)) - Asking each executor to shut down
+2016-12-20 01:37:13,941 INFO  [Thread-5] cluster.SchedulerExtensionServices (Logging.scala:logInfo(54)) - Stopping SchedulerExtensionServices
+(serviceOption=None,
+ services=List(),
+ started=false)
+2016-12-20 01:37:13,942 INFO  [Thread-5] cluster.YarnClientSchedulerBackend (Logging.scala:logInfo(54)) - Stopped
+2016-12-20 01:37:13,948 INFO  [dispatcher-event-loop-1] spark.MapOutputTrackerMasterEndpoint (Logging.scala:logInfo(54)) - MapOutputTrackerMasterEndpoint stopped!
+2016-12-20 01:37:13,957 INFO  [Thread-5] memory.MemoryStore (Logging.scala:logInfo(54)) - MemoryStore cleared
+2016-12-20 01:37:13,961 INFO  [Thread-5] storage.BlockManager (Logging.scala:logInfo(54)) - BlockManager stopped
+2016-12-20 01:37:13,962 INFO  [Thread-5] storage.BlockManagerMaster (Logging.scala:logInfo(54)) - BlockManagerMaster stopped
+2016-12-20 01:37:13,965 INFO  [dispatcher-event-loop-1] scheduler.OutputCommitCoordinator$OutputCommitCoordinatorEndpoint (Logging.scala:logInfo(54)) - OutputCommitCoordinator stopped!
+2016-12-20 01:37:13,967 INFO  [Thread-5] spark.SparkContext (Logging.scala:logInfo(54)) - Successfully stopped SparkContext
+2016-12-20 01:37:13,967 INFO  [Thread-5] util.ShutdownHookManager (Logging.scala:logInfo(54)) - Shutdown hook called
+2016-12-20 01:37:13,968 INFO  [Thread-5] util.ShutdownHookManager (Logging.scala:logInfo(54)) - Deleting directory /tmp/spark-c69ceef3-ecce-4e7a-8cdf-de3d139048cf/pyspark-3ac3b500-428d-4e85-9c99-18f0f4996a44
+2016-12-20 01:37:13,969 INFO  [Thread-5] util.ShutdownHookManager (Logging.scala:logInfo(54)) - Deleting directory /tmp/spark-c69ceef3-ecce-4e7a-8cdf-de3d139048cf

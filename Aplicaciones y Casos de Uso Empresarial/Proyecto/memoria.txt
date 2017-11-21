@@ -1,0 +1,182 @@
+El propósito de esta práctica es el de poner en práctica los conocimientos adquiridos en las distintas asignaturas del máster aplicando éstos al ámbito empresarial.
+
+
+Proyecto 1: Movistar en apuros 
+
+En este proyecto tenemos que asesorar a una operadora de servicios teléfonicos y de internet (Movistar) que ante las actuaciones de agentes externos (Netflix y Vodafone) sufre fuga de clientes. Nuestra labor es la de encontrar un patrón entre los clientes que abandonan la empresa para poder sugerir actuaciones que prevengan la fuga.
+
+
+Apartado 1) Análisis de perfiles de posibles desertores:
+
+
+Los subapartados en los que vamos a dividir este apartado son:
+
+0) Contextualización
+1) Análisis del conjunto de datos proporcionado.
+2) Preprocesado de variables y selección de registros y atributos. 
+3) División del conjunto de datos en conjunto de entrenamiento y conjunto de test.
+4) Entrenamiento de modelos y evaluación de resultados.
+5) Selección de modelo y conclusiones.
+
+
+0) Contextualización
+
+La idea es obtener un modelo que describa el comportamiento de permanencia o fuga de clientes y proponer un mecanismo o incentivo para evitar la misma, que pueda cubrir el mayor número de posible de clientes.
+
+
+1) Análisis del conjunto de datos proporcionado.
+
+El conjunto de datos está compuesto por un total de 7044 registros de comportamientos de clientes.
+Como conjunto de datos de entrada de nuestro sistema tenemos un fichero CSV con una descripción de un conjunto de clientes.
+Para realizar el estudio vamos a utilizar R. El motivo para utilizar R es que nos sentimos cómodos utilizando las distintas librerías que existen para generar modelos para predecir el comportamiento de los clientes objeto de estudio. El código es sencillo:
+
+
+df <- read.csv(file="Telco-Customer-Churn.csv")
+summary(df)
+      customerID      gender     SeniorCitizen    Partner    Dependents
+ 0002-ORFBO:   1   Female:3488   Min.   :0.0000   No :3641   No :4933  
+ 0003-MKNFE:   1   Male  :3555   1st Qu.:0.0000   Yes:3402   Yes:2110  
+ 0004-TLHLJ:   1                 Median :0.0000                        
+ 0011-IGKFF:   1                 Mean   :0.1621                        
+ 0013-EXCHZ:   1                 3rd Qu.:0.0000                        
+ 0013-MHZWF:   1                 Max.   :1.0000                        
+ (Other)   :7037                                                       
+     tenure      PhoneService          MultipleLines     InternetService
+ Min.   : 0.00   No : 682     No              :3390   DSL        :2421  
+ 1st Qu.: 9.00   Yes:6361     No phone service: 682   Fiber optic:3096  
+ Median :29.00                Yes             :2971   No         :1526  
+ Mean   :32.37                                                          
+ 3rd Qu.:55.00                                                          
+ Max.   :72.00                                                          
+                                                                        
+             OnlineSecurity              OnlineBackup 
+ No                 :3498   No                 :3088  
+ No internet service:1526   No internet service:1526  
+ Yes                :2019   Yes                :2429  
+                                                      
+                                                      
+                                                      
+            DeviceProtection              TechSupport  
+ No                 :3095    No                 :3473  
+ No internet service:1526    No internet service:1526  
+ Yes                :2422    Yes                :2044  
+                                                       
+                                                       
+                                                       
+                                                       
+              StreamingTV              StreamingMovies           Contract   
+ No                 :2810   No                 :2785   Month-to-month:3875  
+ No internet service:1526   No internet service:1526   One year      :1473  
+ Yes                :2707   Yes                :2732   Two year      :1695  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+ PaperlessBilling                   PaymentMethod  MonthlyCharges  
+ No :2872         Bank transfer (automatic):1544   Min.   : 18.25  
+ Yes:4171         Credit card (automatic)  :1522   1st Qu.: 35.50  
+                  Electronic check         :2365   Median : 70.35  
+                  Mailed check             :1612   Mean   : 64.76  
+                                                   3rd Qu.: 89.85  
+                                                   Max.   :118.75  
+                                                                   
+  TotalCharges    Churn     
+ Min.   :  18.8   No :5174  
+ 1st Qu.: 401.4   Yes:1869  
+ Median :1397.5             
+ Mean   :2283.3             
+ 3rd Qu.:3794.7             
+ Max.   :8684.8             
+ NA's   :11     
+
+
+Haciendo ingeniería inversa y aplicando imaginación sobre la semántica de los atributos a partir de su nombre, deducimos que los atributos pueden clasificarse en:
+
+Atributo identificador del cliente:
+	customerID: representa al identificador único de cliente.
+
+Atributos demográficos:
+	gender: variable cualitativa que representa el género del cliente.
+	SeniorCitizen: variable cualitativa que representa si el cliente es un jubilado.
+	Partner: variable cualitativa que indica si el cliente está casado.
+	Dependents: variable cualitativa que indica si el cliente tiene personas a su cargo (por ejemplo, hijos).
+
+Atributos relativos al servicio:	
+	tenure: variable cuantitativa que representa el número de meses que el cliente lleva contratados
+
+Atributos relativos a productos contratados:
+	PhoneService: variable cualitativa que representa si tiene contratada línea de voz
+	MultipleLines: variable cualitativa que representa si tiene contratadas más de una línea de voz
+	InternetService: variable cualitativa que representa si tiene contratada línea de datos
+	OnlineSecurity: variable cualitativa que representa si tiene contratado servicio de seguridad (antivirus suponemos)
+	OnlineBackup: variable cualitativa que representa si tiene contratado servicio de backup
+	DeviceProtection: variable cualitativa que representa si tiene contratado seguro del dispositivo
+	TechSupport: variable cualitativa que representa si tiene contratado servicio de asistencia/soporte, (de internet suponemos)
+	StreamingTV: variable cualitativa que representa si tiene contratado servicio de TV
+	StreamingMovies: variable cualitativa que representa si tiene contratado servicio de pay per view
+
+Atributos relativos a la forma de pago y costes de la factura:
+	Contract: variable cualitativa que representa el tipo de contrato
+	PaperlessBilling: variable cualitativa que representa si recibe factura electrónica
+	PaymentMethod: variable cualitativa que representa el tipo de pago/cargo
+	MonthlyCharges: variable cuantitativa que representa el coste mensual aproximado
+	TotalCharges: variable cuantitativa que representa el coste anual aproximado
+
+Atributos objeto de estudio:
+	Churn: variable cualitativa que representa si el cliente abandona la empresa o no
+
+
+2) Preprocesado de variables y selección de registros y atributos. 
+
+En esta fase debemos hacer un preprocesado del conjunto de datos. Primero, vamos a analizar los registros que contienen valores desconocidos. En las tablas anteriores hemos visto que tan sólo el atributo TotalCharges contiene valores NA, concretamente existen 11 registros. Como esos 11 registros de 7044 representan poco más del 0.15% de registros, hemos tomado la elección de eliminar esos registros porque consideramos que hacerlo no altera el modelo a generar y elimina el posible ruido que podríamos introducir al intentar desarrollar un modelo para predecir esos valores desconocidos.
+
+En R es sencillo eliminar esos registros así:
+df <- na.omit(df)
+
+A continuación vamos a reinterpretar las variables cualitativas que tienen 3 valores pero que ya están representadas en otro atributo. Por ejemplo, el atributo MultipleLines tiene por posibles valores "No", "No phone service" y "Yes". Como podemos ver los 682 registros que tienen por valor "No" en PhoneService tienen por valor "No phone service". Nuestra propuesta es eliminar esa redundancia y codificar "No phone service" como "No" para eliminar la variabilidad y mejorar la capacidad de predicción de nuestro modelo. Hacemos el tratamiento similar para los atributos MultipleLines, OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport, StreamingTV y StreamingMovies.
+
+
+
+3) División del conjunto de datos en conjunto de entrenamiento y conjunto de test.
+
+Para poder evaluar el modelo que vamos a generar es necesario dividir el conjunto de datos de estudio (formado ahora por 7033 registros) en dos subconjuntos, uno de entrenamiento y otro de test. El primero servirá para elaborar un modelo utilizando un algoritmo apropiado y el segundo servirá para elaborar un índice de bondad para comprobar cuán bueno es el modelo desarrollado. En nuestro caso vamos a dividir el conjunto de datos en R de forma que garanticemos que el conjunto de datos de entrenamiento tiene el mismo porcentaje de ejemplos clasificados según el atributo Churn que los datos originales. Para ello usamos un código similar al siguiente:
+
+library(caret)
+set.seed(3456)
+trainIndex <- createDataPartition(df$Churn, p = .8, list = FALSE, times = 1)
+head(trainIndex)
+
+
+
+4) Entrenamiento de modelos y evaluación de resultados.
+
+
+
+5) Selección de modelo y conclusiones.
+
+
+Apartado 2) Segmentación/creación de grupos entre los desertores y los no desertores.
+
+En este apartado se nos pide discernir entre los usuarios que abandonan la compañía para agruparlos en distintos perfiles. Estos perfiles serán clave para posteriormente centrar los incentivos.
+
+Comenzaremos para ello cogiendo los registros de los usuarios que han decidido dejar la compañía y procedemos a 
+
+
+
+Apartado 3) Diseño de la campaña de incentivos.
+
+
+
+
+Proyecto 3: Netflix a todas horas
+
+
+Este proyecto consiste en elaborar dos tipos de recomendadores para que Netflix sugiera series o películas a sus clientes.
+
+
+Dividimos este proyecto en dos apartados naturales:
+
+Apartado 1) Recomendador basado en contenido.
+
+
+Apartado 2) Recomendador basado en factorización matricial. 

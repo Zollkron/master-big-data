@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subreddit nombre="lotr" xmlns="practicaReddit"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="practicaReddit practicaReddit.xsd">
+	<apartado nombre="nuevos">
+		<post>
+			<comentario />
+		</post>
+	</apartado>
+	<apartado nombre="populares">
+	</apartado>
+</subreddit>

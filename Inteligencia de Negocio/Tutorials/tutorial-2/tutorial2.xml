@@ -1,0 +1,93 @@
+<Schema name="tutorial2Moises" description="test shcema description">
+  <Parameter name="Moises" description="Moises" type="String" modifiable="true" defaultValue="admin">
+  </Parameter>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="TipoIngreso">
+    <Hierarchy name="TipoIngreso" visible="true" hasAll="true" primaryKey="pk_tipo_ingreso" caption="TipoIngreso">
+      <Table name="dw_dim_tipoingreso" schema="dw_ingresos">
+      </Table>
+      <Level name="TipoIngreso" visible="true" column="tipo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Moises" visible="true" cache="false" enabled="true">
+    <Table name="dw_fact_ingreso" schema="dw_ingresos" alias="FACT">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_procedencia" highCardinality="false" name="Procedence" caption="Procedence">
+      <Hierarchy name="Procedence" visible="true" hasAll="true" allMemberCaption="AllProcedences" allLevelName="AllLevels" primaryKey="pk_procedencia" caption="ProcedenceCaption">
+        <Table name="dw_dim_proc" schema="dw_ingresos">
+        </Table>
+        <Level name="ProcedenceLevelService" visible="true" table="dw_dim_proc" column="servicio_procedencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Nivel Procedencia">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" visible="true" foreignKey="fk_tiempo" highCardinality="false" name="Time" caption="Time">
+      <Hierarchy name="Time" visible="true" hasAll="true" allMemberName="All" allMemberCaption="AllCap" allLevelName="AllLevelName" primaryKey="pk_tiempo" caption="TiemCap">
+        <Table name="dw_dim_time" schema="dw_ingresos">
+        </Table>
+        <Level name="Year" visible="true" column="anno" type="Integer" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        </Level>
+        <Level name="Month" visible="true" column="mes" ordinalColumn="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Months">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_tipo_ingreso" highCardinality="false" name="AdmissionType" caption="AdmissionType">
+      <Hierarchy name="AdmissionType" visible="true" hasAll="true" allMemberName="All" allMemberCaption="AllMembersCap" allLevelName="AllLevelsNames" primaryKey="pk_tipo_ingreso" caption="ATCap">
+        <Table name="dw_dim_tipoingreso" schema="dw_ingresos">
+        </Table>
+        <Level name="Type" visible="true" table="dw_dim_tipoingreso" column="tipo" ordinalColumn="tipo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Type">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_paciente" highCardinality="false" name="Patient" caption="Patient" description="Patient">
+      <Hierarchy name="Patient" visible="true" hasAll="true" allMemberName="All" allMemberCaption="AllMembersCap" allLevelName="AllLevelsNames" primaryKey="pk_paciente" caption="Patient">
+        <Table name="dw_dim_paciente" schema="dw_ingresos">
+        </Table>
+        <Level name="Sex" visible="true" column="sexo" ordinalColumn="sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Sex" description="Sex">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <DimensionUsage source="TipoIngreso" name="usadaTipoIng" visible="true" foreignKey="fk_tipo_ingreso" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="TimeDimension" visible="true" foreignKey="fk_fecha_alta" highCardinality="false" name="TiempoAlta">
+      <Hierarchy name="TiempoAlta" visible="true" hasAll="true" primaryKey="pk_tiempo">
+        <Table name="dw_dim_time" schema="dw_ingresos">
+        </Table>
+        <Level name="Year" visible="true" column="anno" type="Integer" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        </Level>
+        <Level name="Month" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_geo_snowflake" highCardinality="false" name="GeoSnow">
+      <Hierarchy name="Geography" visible="true" hasAll="true" primaryKey="pk_provincia" primaryKeyTable="dw_dim_geo_provincia">
+        <Join leftKey="comunidad" rightKey="pk_comunidad">
+          <Table name="dw_dim_geo_provincia" schema="dw_ingresos">
+          </Table>
+          <Table name="dw_dim_geo_comunidad" schema="dw_ingresos">
+          </Table>
+        </Join>
+        <Level name="Provincia" visible="true" table="dw_dim_geo_provincia" column="provincia" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" caption="ProvinciaSF">
+        </Level>
+        <Level name="Comunidad" visible="true" table="dw_dim_geo_comunidad" column="comunidad" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Comunidad">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_diagnosticos" highCardinality="false" name="Diagnosticos">
+      <Hierarchy name="Diagnostico" visible="true" hasAll="true">
+        <View alias="VD">
+          <SQL dialect="postgres">
+            <![CDATA[SELECT B.bridge_diagnostico col1, D.diagnostico col2, D.cie col3 FROM dw_ingresos.bridge_diagnostico B JOIN dw_ingresos.grupo_diagnostico G USING (bridge_diagnostico) JOIN dw_ingresos.diagnostico D USING (pk_diagnostico)]]>
+          </SQL>
+        </View>
+        <Level name="Diagnostico" visible="true" column="col3" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Duration" column="duracion" datatype="Integer" aggregator="avg" caption="Duration" visible="true">
+    </Measure>
+    <Measure name="EpisodioDegenerado" column="id_episodio_degenerate" datatype="Integer" aggregator="distinct-count" visible="true">
+    </Measure>
+    <CalculatedMember name="MiembroCalculado" formula="[Measures].[Duration] * 2" dimension="Measures" visible="true">
+    </CalculatedMember>
+  </Cube>
+</Schema>

@@ -1,0 +1,3 @@
+Aparte de los ficheros python-notebook modificados con las cuatro prácticas que se pide en ellos, he hecho el script aparte que se pide como práctica 5 llamado sparkpractica.py. Además adjunto capturas de pantalla de los resultados de la ejecución en el clúster así como un log con el resultado de su ejecución en el clúster.
+
+También incluyo el log de ejecución en local y los directorios outdir1 y outdir2 que recogen los resultados en local.

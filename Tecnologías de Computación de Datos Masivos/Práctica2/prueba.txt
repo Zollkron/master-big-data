@@ -1,0 +1,6 @@
+Éste es un fichero de prueba para comprobar que efectivamente se envía este fichero desde mi equipo al sistema HDFS 
+de mi clúster HADOOP utilizando webhdfs.
+
+Después de enviarlo probaremos a abrirlo. Si se abre tiene que mostrar el contenido del mismo por la salida estándar.
+
+Moisés F.

@@ -1,0 +1,388 @@
+
+Uso básico del cluster
+Inicio de Hadoop
+
+Ocultar
+
+Tres partes:
+
+    Preparar el HDFS
+    Iniciar los demonios de Hadoop
+    Preparación de los directorios de los usuarios
+
+Preparación del HDFS
+
+    Conéctate por ssh al Namenode
+    Conviértete en el usuario hdmaster (sudo su - hdmaster)
+    Como usuario hdmaster, inicia el HDFS ejecutando, en el Namenode:
+
+               $ hdfs namenode -format
+
+          Al finalizar debería indicar: "INFO common.Storage: Storage directory /var/data/hadoop/hdfs/nn has been successfully formatted."
+
+Especificar los DataNodes/NodeManagers
+
+En el fichero $HADOOP_PREFIX/etc/hadoop/slaves borra localhost y pon las IPs internas de los cuatro DataNodes/NodeManagers (una IP por línea).
+
+Inicio de los demonios
+
+    En el NameNode/ResourceManager, como usuario hdmaster, inicia los demonio del HDFS y YARN ejecutando:
+
+    $ $HADOOP_PREFIX/sbin/hadoop-daemon.sh start namenode
+    $ $HADOOP_PREFIX/sbin/yarn-daemon.sh start resourcemanager
+
+    Comprueba los ficheros de log en el directorio /var/log/hadoop del NameNode, para comprobar errores. 
+
+    También desde el NameNode, inicia el demonio del HDFS y YARN en los DataNodes (fijate en la s final de los comandos)
+
+    $ $HADOOP_PREFIX/sbin/hadoop-daemons.sh start datanode
+    $ $HADOOP_PREFIX/sbin/yarn-daemons.sh start nodemanager
+
+    Conéctate por ssh al checkpointnode y lanza los demonios correspondientes al CheckPoint node (aka Secondary NN) y al JobHistory server
+
+    $ $HADOOP_PREFIX/sbin/hadoop-daemon.sh start secondarynamenode
+    $ $HADOOP_PREFIX/sbin/mr-jobhistory-daemon.sh start historyserver
+
+    Abre un navegador en tu PC  y chequea las siguientes páginas
+        http://namenode:50070 interfaz web del HDFS
+        http://namenode:8088 interfaz web de YARN
+        http://checkpointnode:50090 interfaz web del CheckPoint node
+        http://checkpointnode:19888/ interfaz web del JobHistory server
+
+    A través de esos interfazes, comprueba que todo está funcionando como debiera.
+    IMPORTANTE: Desde la Wireless de la USC, no vamos a tener acceso a estos puertos. Para poder acceder, puedes usar la siguiente solución:
+        Abre en tu PC un proxy SOCKS al NameNode ejecutando el siguiente comando:
+                ssh -f -N -D localhost:1080 namenode
+        En tu navegador web, accede a las propiedades de red y especifica como proxy un servidor SOCKS v5, localhost puerto 1080, como se ve en la figura
+
+        Configuración del proxy
+
+        Cuando termines, recuerda quitar esta configuración del navegador.
+
+Parada de los demonios
+
+El proceso de parar los demonios es el inverso del seguido para iniciarlos, cambiando start por stop. (No los pares de momento, a menos que tengas que apagar las máquinas. Para evitar problemas, siempre que detengas las máquinas detén los demonios antes).
+
+Prueba de un ejemplo
+
+Como test de nuestra instalación, podemos ejecutar un ejemplo de MapReduce:
+
+    Desde el NameNode, como usuario hdmaster, ejecuta lo siguiente
+
+    $ export YARN_EXAMPLES=$HADOOP_PREFIX/share/hadoop/mapreduce
+    $ yarn jar $YARN_EXAMPLES/hadoop-mapreduce-examples-2.7.*.jar pi 16 1000
+
+    Mientras se ejecuta, comprueba en el interfaz web de YARN la evolución. Al terminar, comprueba que se ha guardado información de la ejecución en el JobHistory server.
+
+Creación de los directorios de los usuarios en HDFS
+
+    En el Namenode, como usuario hdmaster, crea un directorio en HDFS (dentro de /user) para el usuario que vaya a ejecutar las tareas MapReduce, que será el usuario que creasteis para acceder a las máquinas de azure
+
+    $ hdfs dfs -mkdir -p /user/poned_un_nombre
+    $ hdfs dfs -chown poned_un_nombre /user/poned_un_nombre
+    $ hdfs dfs -ls /user
+
+    Debemos dar los permisos adecuados en /tmp del HDFS para que el usuario pueda lanzar aplicaciones MapReduce
+
+     $ hdfs dfs -chmod 1777 /tmp
+     $ hdfs dfs -chmod 1777 /tmp/hadoop-yarn
+     $ hdfs dfs -chmod 1777 /tmp/hadoop-yarn/staging
+     $ hdfs dfs -chmod 1777 /tmp/hadoop-yarn/staging/history
+
+ Prueba como usuario no privilegiado (no hdmaster)
+
+    En el Namenode, como usuario normal (no hdmaster), añade al .bashrc las siguientes líneas
+
+            export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+            export HADOOP_PREFIX=/opt/yarn/hadoop
+            export PATH=$PATH:$HADOOP_PREFIX/bin
+
+    Ejecuta el .bashrc (. ~/.bashrc) y comprueba que puedes acceder al HDFS ejecutando
+
+            hdfs dfs -ls
+    Este comando no debería dar ninguna salida (ya que el usuario no tiene ningún fichero), ni ningún mensaje de error
+Uso del cluster
+
+Ocultar
+
+Instalar Hadoop en local
+
+1. En vuestro PC (o en la máquina virtual que ejecutáis en el PC) descargar la misma versión de Hadoop y descomprimirla en algún directorio. Para mayor comodidad, podéis crear un enlace 
+
+        $ ln -s hadoop-2.7.3 hadoop
+
+2. Definid la variable HADOOP_PREFIX al directorio donde lo hayáis descargado, por ejemplo
+
+        $ export HADOOP_PREFIX=$HOME/hadoop
+
+3. Copiar los ficheros de configuración de Hadoop desde el NameNode a vustra máquina
+
+     $ scp usuario@ip-externa-del-namenode:/opt/yarn/hadoop/etc/hadoop/*site.xml $HADOOP_PREFIX/etc/hadoop/
+
+3. Para más comodidad, poner en el path el directorio bin de Hadoop (ponedlo en el .bashrc para que quede)
+
+        $ export PATH=$PATH:$HADOOP_PREFIX/bin
+
+4. Comprobad que funciona, por ejemplo: hdfs dfs -ls /user (Nota: este comando no va a funcionar desde la Wireless de la USC, tendrás que ejecutarlo en el nameNode)
+
+Descargar ficheros de prueba
+
+1. Descarga de http://tinyurl.com/TCDM-libros-grande los datos de ejemplo que usaremos en esta practica y copialos al NameNode
+
+     $ scp libros.tar usuario@ip-externa-del-namenode:~
+
+2. En el NameNode, como usuario normal (no hdmaster) destarea el fichero y copiar los datos al HDFS con:
+
+    $ hdfs dfs -put libros .
+
+3. Comprueba que se han copiado:
+
+    $ hdfs dfs -ls libros
+
+4. Mediante el interfaz web, analizad donde se han copiado y replicado los ficheros. Comprueba que cada fichero tiene 3 réplicas. 
+
+    Abrid un navegador y conectarse a namenode:50070
+    Id al menu "Utilities" -> "Browse the filesystem" 
+
+Ejecución del wordcount
+
+Ocultar
+
+Estas notas son para utilizar Eclipse y Apache Maven (http://maven.apache.org/) para probar el código del wordcount en el cluster. El Eclipse instalado en la máquina virtual de VirtualBox ya tiene instalado un plugin para facilitar el trabajo con Maven. Si preferís algún otro IDE, tendréis que instalarlo vosotros.
+
+Creación del proyecto (en el front-end)
+
+    Iniciar el Eclipse, y, después de elegir el workspace que queramos, entrar en el workbench
+    Elegir File -> New -> Other -> Maven -> Maven Project
+    Dejar las opciones por defecto. Como arquetipo, elegid maven-archetype-quickstart.
+    En la siguiente ventana, poned un GroupId y un ArtifactId
+        groupId Este elemento indica un identificador único de la organización o grupo que crea el proyecto. Suele ser el FQDN de la organización (p.e. com.mycompany.app). En nuestro caso podemos poner cursohadoop.
+        artifactId Este elemento indica un nombre único para el artefacto primario que estamos generando, normalmente el fichero jar que queremos crear. En nuestro caso, poder wordcount.
+    En el proyecto generado, seleccionar el fichero pom.xml (fichero de configuración del proyecto en Maven) y elegid la pestaña Dependencies
+    Añadir una dependencia, y en el cuadro de búsqueda indicar hadoop (puede tardar un rato en aparecer los resultados de la búsqueda). Si la búsqueda no da resultados, simplemente pon en Group IP org.apache.hadoop, en Artifact Id: hadoop-client y en Version: 2.7.3
+    De las opciones encontradas, seleccionar org.apache.hadoop -> hadoop-client -> 2.7.3 [jar] 
+    Select dependency
+    Ir al fichero pom.xml (pestaña pom.xml), añadir lo siguiente dentro de la etiqueta <project> (para indicar el fichero principal en el jar generado y la versión del compilador) y salvar el fichero:   
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <mainClass>cursohadoop.wordcount.WordCountDriver</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.3</version>
+                    <configuration>
+                       <source>1.8</source>
+                       <target>1.8</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    Selecciona el proyecto wordcount, botón derecho -> Maven -> Update Project, para actualizar el proyecto
+    Elimina App.java y crea las clases WordCountDriver, WordCountMapper y WordCountReducer:
+        Añadir los imports necesarios
+        Siempre que nos de a elegir los imports entre org.apache.hadoop.mapred (API antigua) y org.apache.hadoop.mapreduce (API nueva) elegid esta segunda
+
+ 
+
+Ejecución en local (para depuración)
+
+Podemos ejecutar el wordcount en local para depuración, directamente en el Eclipse o en un terminal
+
+    Ejecución en el Eclipse
+        Seleccionar la clase WordCountDriver -> Run -> Run Configurations -> Java Applications y en Arguments especificar la entrada y salida y en VM Arguments -Dlog4j.configuration=file:///Path_completo_instalación_hadoop/etc/hadoop/log4j.properties
+        El directorio de salida no puede existir
+        En el directorio de salida se crea un fichero part por cada reducer
+    Ejecución en el terminal
+        Generar el jar, seleccionando el proyecto -> Run as -> Maven build, y en Goals indicar package
+        En un terminal, ir al directorio de trabajo/wordcount y ejecutar:
+
+        $ yarn jar target/wordcount-0.0.1-SNAPSHOT.jar -fs file:/// -jt local fichero_de_texto_de_entrada directorio_de_salida
+
+ 
+
+Ejecución en el cluster
+
+Para ejecutar en el cluster, usamos el wordcount-0.0.1-SNAPSHOT.jar creado en el apartado anterior
+
+    Copia mediante scp al NameNode el fichero  target/wordcount-0.0.1-SNAPSHOT.jar
+    Conectate por ssh al NameNode y, como usuario no privilegiado, ejecuta:
+
+    $ yarn jar wordcount-0.0.1-SNAPSHOT.jar libros salidawc
+
+    En este caso, se usan todos los ficheros del directorio y los datos se leen y se guardan en HDFS (directorio /user/ec2-user)
+    Comprueba el proceso de ejecución mediante en interfaz web de YARN (namenode:8088)
+    Descarga el fichero de salida a tu PC a través del interfaz web de HDFS (namenode:50070, menu Utilities -> Browse filesystem)
+
+Benchmarking del cluster
+
+Ocultar
+
+La instalación de Hadoop incluye un conjunto de programas de test y ejemplos. Para ver la lista de disponibles, ejecutar, en el Namenode como usuario hdmaster:
+
+$ export YARN_EXAMPLES=$HADOOP_PREFIX/share/hadoop/mapreduce
+$ yarn jar $YARN_EXAMPLES/hadoop-mapreduce-client-jobclient-*-tests.jar
+$ yarn jar $YARN_EXAMPLES/hadoop-mapreduce-examples-*.jar 
+
+Algunos ejemplos son:
+
+1. Benchmarking de HDFS con TestDFSIO
+
+Escribir 10 ficheros de 100 MB cada uno
+
+$ yarn jar $YARN_EXAMPLES/hadoop-mapreduce-client-jobclient-*-tests.jar TestDFSIO -write -nrFiles 10 -fileSize 100
+
+Leer 10 ficheros de 100 MB cada uno
+
+$ yarn jar $YARN_EXAMPLES/hadoop-mapreduce-client-jobclient-*-tests.jar TestDFSIO -read -nrFiles 10 -fileSize 100
+
+Limpiar los ficheros creados en el test
+
+$ yarn jar $YARN_EXAMPLES/hadoop-mapreduce-client-jobclient-*-tests.jar TestDFSIO -clean
+
+2. Benchmarking el MapReduce con un TeraSort
+
+En el NameNode, como usuario hdmaster, ejecuta el siguiente comando, que genera un fichero con 10 millones de filas de 100 bytes cada una (~1GB), en el directorio terasortin
+
+$ yarn jar $YARN_EXAMPLES/hadoop-mapreduce-examples-*.jar teragen 10000000 terasortin
+
+Ejecuta un sort sobre los datos creados, salida a terasortout:
+
+$ yarn jar $YARN_EXAMPLES/hadoop-mapreduce-examples-*.jar terasort terasortin terasortout
+
+Verifica que la ordenación fue correcta correctamente:
+
+$ yarn jar $YARN_EXAMPLES/hadoop-mapreduce-examples-*.jar teravalidate terasortout teravalout
+
+Revisad la salida en el directorio teravalout para ver que no dio errores.
+
+Más ejemplos de benchmarking de hadoop aquí. 
+Añadir y retirar datanodos/jobtrackers
+
+Ocultar
+
+Ficheros include/exclude
+
+Aunque no es estrictamente necesario para añadir o retirar nodos del cluster, es conveniente tener una lista en la que podamos indicar los nodos que se pueden añadir o retirar del cluster. Para ello, haced lo siguiente en el NameNode (como usuario hdmaster):
+
+    Parad los demonios
+    Crear cuatro ficheros: $HADOOP_PREFIX/etc/hadoop/dfs.include, $HADOOP_PREFIX/etc/hadoop/dfs.exclude, $HADOOP_PREFIX/etc/hadoop/yarn.include y $HADOOP_PREFIX/etc/hadoop/yarn.exclude (inicialmente vacíos)
+    En los fichero dfs.include y yarn.include, poned los nombres de todos los DataNodes/NodeManagers que querramos que estén en el cluster . Dejad los ficheros dfs.exclude y yarn.exclude vacíos.
+    En el fichero de configuración hdfs-site.xml, añadid dos propiedades:
+        dfs.hosts: nombre de un fichero con lista de hosts que pueden actuar como DataNodes; si el fichero está vacío, cualquier nodo están permitido. Darle como valor, el path al fichero dfs.include
+        dfs.hosts.exclude:  nombre de un fichero con lista de hosts que no pueden actuar como DataNodes; si el fichero está vacío, ninguno está excluido. Darle como valor, el path al fichero dfs.exclude
+    En el fichero yarn-site.xml, añadid dos propiedades:
+        yarn.resourcemanager.nodes.include-path: nombre de un fichero con lista de hosts que pueden actuar como NodeManagers; si el fichero está vacío, cualquier nodo están permitido. Darle como valor, el path al fichero yarn.include
+        yarn.resourcemanager.nodes.exclude-path: nombre de un fichero con lista de hosts que no pueden actuar como NodeManagers; si el fichero está vacío, ninguno está excluido. Darle como valor, el path al fichero yarn.exclude 
+    Reiniciad los demonios.
+
+ 
+
+Añadir un datanode/nodemanager
+
+Vamos a añadir un nuevo nodo al clusterl:
+
+    En el Namenode, añadir el nombre de nuevo nodo (datanode5) en los ficheros dfs-include y yarn-include
+    Actualizar el NameNode con los nuevos DataNodes ejecutando:
+        hdfs dfsadmin -refreshNodes
+    Actualizar el JobTracker con los nuevos TaskTrackers ejecutando:
+        yarn rmadmin -refreshNodes
+    Comprobad en el interfaz web del NameNode, que este nuevo nodo aparece como Dead
+    Iniciar un nuevo nodo como el resto de nodos del cluster (con lo que tendrá ya Hadoop instalado), con la IP interna 10.0.0.10
+    Conectarse por ssh al nuevo nodo e iniciar manualmente los demonios del datanode/jobtracker en el nuevo nodo (como usuario hdmaster)
+        $HADOOP_PREFIX/sbin/hadoop-daemon.sh start datanode
+        $HADOOP_PREFIX/sbin/yarn-daemon.sh start nodemanager
+
+El nodo contacta automáticamente con el Namenode y se unirá al cluster
+
+    Usa (en el NameNode) los comandos hdfs dfsadmin -report y yarn node -list para combrobar que el nuevo nodo se ha añadido. Puedes comprobarlo también el interfaz web del NameNode y de YARN.
+    Añade la IP interna del nodo al fichero slaves en el Namenode para que se inicien/paren los demonios cuando usemos hadoop-daemons y/o yarn-daemons
+
+El nuevo nodo, inicialmente está vacío (no tiene datos de HDFS), con lo que el cluster estará desbalanceado. Se puede forzar el balanceo ejecutando, en el NameNode:
+
+    hdfs dfs balancer
+
+En nuestro caso, al tener muy pocos datos, el HDFS considera que no es necesario balancear. Para más información, ver https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html#balancer
+
+Retirar un DataNode
+
+En principio, el apagado de un DataNode no debería afectar al cluster. Sin embargo, si queremos hacer un apagado programado de un DataNode es preferible advertir al NameNode previamente. Utiliza los siguiente pasos para eliminar, por ejemplo, el Datanode4.
+
+Pasos:
+
+    Poned el nombre del nodo o nodos que queremos retirar en los fichero dfs-exclude y yarn-exclude y ejecutar
+        hdfs dfsadmin -refreshNodes
+        yarn rmadmin -refreshNodes
+    Comprobad que al cabo de un rato, en el interfaz web o mediante los comandos los comandos hdfs dfsadmin -report y yarn node -list, que el/los nodo(s) excluido(s) aparece(n) que está(n) Decomissioned en HDFS y YARN
+
+ya podríamos parar los demonios en el nodo decomisionado y apagarlo (puedes borrar la MV DataNode4). Si no queremos volver a incluirlo en el cluster:
+
+    Eliminar el/los nodo(s) de los ficheros include y exclude y ejecutar otra vez
+        hdfs dfsadmin -refreshNodes
+        yarn rmadmin -refreshNodes
+    Eliminar el/los nodo(s) del fichero slaves
+
+ 
+Rack awareness
+
+Ocultar
+
+Para obtener el máximo rendimiento, es importante configurar Hadoop para para que conozca la topología de nuestra red. Por defecto, Hadoop considera que todos los datanodes/tasktrackers son iguales y están situados en un único rack, que identifica como /default-rack.
+
+Para clusters multirack, debemos indicar a Hadoop en que rack está cada nodo, para mejorar la eficiencia y la fiabilidad.
+
+Arquitectura típica en 2 niveles de un cluster Hadoop
+
+En la imagen, se muestra una arquitectura típica en 2 niveles de un cluster Hadoop. Esta topología puede describirse en forma de árbol, como /switch1/rack1 y /switch1/rack2, o, simplificando /rack1 y /rack2. Para indicarle esta topología a Hadoop, es necesario utilizar un script que mapee los nombres de los nodos al rack en el que se encuentran.
+
+En nuestro caso, vamos a suponer que tenemos 2 racks (rack1 y rack2) y que tenemos dos nodos en cada rack. Haced lo siguiente en el NameNode como usuario hdmaster:
+
+    Apagar los demonios.
+    Crear un fichero $HADOOP_PREFIX/etc/hadoop/topology.data que tenga en cada linea la IP de uno de los Nodemanagers y el rack donde está, como en este ejemplo (cambiando las IPs por las tuyas)
+
+    10.0.0.6     /rack1
+    10.0.0.7     /rack1
+    10.0.0.8     /rack2
+    10.0.0.10    /rack2
+
+    Crear un script de bash $HADOOP_PREFIX/etc/hadoop/topology.script como el siguiente (fuente: http://wiki.apache.org/hadoop/topology_rack_awareness_scripts). Darle permisos de ejecución (chmod +x topology.script).
+
+    #!/bin/bash
+
+    HADOOP_CONF=/opt/yarn/hadoop/etc/hadoop 
+    while [ $# -gt 0 ] ; do
+      nodeArg=$1
+      exec< ${HADOOP_CONF}/topology.data 
+      result="" 
+      while read line ; do
+        ar=( $line ) 
+        if [ "${ar[0]}" = "$nodeArg" ] ; then
+          result="${ar[1]}"
+        fi
+      done 
+      shift 
+      if [ -z "$result" ] ; then
+        echo -n "/default-rack "
+      else
+        echo -n "$result "
+      fi
+    done
+
+    Define en el fichero core-site.xml la propiedad net.topology.script.file.name y darle como valor el path completo al script
+    Inicia los demonios y comproba que se han identificado los racks ejecutando hdfs dfsadmin -printTopology
+
+ 
+
+Licenciado baixo a GNU Free Documentation License (Versión local)
+

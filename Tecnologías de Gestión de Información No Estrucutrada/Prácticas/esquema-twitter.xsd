@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="practicaTwitter" xmlns="practicaTwitter" elementFormDefault="qualified">
+  <xs:element name="twitter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="personaje" minOccurs="2" maxOccurs="2">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="tweet" minOccurs="1" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="id" type="xs:string" />
+              	  <xs:attribute name="autor" type="xs:string" />
+              	  <xs:attribute name="fecha" type="xs:dateTime" />
+              	  <xs:attribute name="texto" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="nombre" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="nombre" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

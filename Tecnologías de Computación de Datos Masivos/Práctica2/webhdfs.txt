@@ -1,0 +1,71 @@
+//** CREACIÓN DEL DIRECTORIO DESDE MI MÁQUINA USANDO WEBHDFS AL CLÚSTER HADOOP **//
+moises@zollkron:~$ curl -i -X PUT "http://NameNode:50070/webhdfs/v1/user/moises/directorioWebhdfs?op=MKDIRS&user.name=moises"
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Expires: Sat, 19 Nov 2016 23:04:21 GMT
+Date: Sat, 19 Nov 2016 23:04:21 GMT
+Pragma: no-cache
+Expires: Sat, 19 Nov 2016 23:04:21 GMT
+Date: Sat, 19 Nov 2016 23:04:21 GMT
+Pragma: no-cache
+Content-Type: application/json
+Set-Cookie: hadoop.auth="u=moises&p=moises&t=simple&e=1479632661757&s=QQWNf4QQnX1ZvRa0WCawBTgkBZA="; Path=/; Expires=dom, 20-nov-2016 09:04:21 GMT; HttpOnly
+Transfer-Encoding: chunked
+Server: Jetty(6.1.26)
+{"boolean":true}
+
+//** ENVIANDO UN FICHERO DESDE MI MÁQUINA USANDO WEBHDFS AL CLÚSTER HADOOP **//
+//PRIMERO HAY QUE HACER UNA REQUEST PARA DECIRLE AL CLÚSTER HADOOP DONDE QUEREMOS COPIAR, ÉL NOS DEVOLVERÁ EL DATANODE DONDE DEBEMOS HACERLO
+moises@zollkron:~$ curl -i -X PUT "http://NameNode:50070/webhdfs/v1/user/moises/directorioWebhdfs/?op=CREATE&user.name=moises"
+HTTP/1.1 307 TEMPORARY_REDIRECT
+Cache-Control: no-cache
+Expires: Sat, 19 Nov 2016 23:11:28 GMT
+Date: Sat, 19 Nov 2016 23:11:28 GMT
+Pragma: no-cache
+Expires: Sat, 19 Nov 2016 23:11:28 GMT
+Date: Sat, 19 Nov 2016 23:11:28 GMT
+Pragma: no-cache
+Content-Type: application/octet-stream
+Set-Cookie: hadoop.auth="u=moises&p=moises&t=simple&e=1479633088927&s=oGs47gqOChhhNGEgxCnOkvhEnZ8="; Path=/; Expires=dom, 20-nov-2016 09:11:28 GMT; HttpOnly
+Location: http://datanode4:50075/webhdfs/v1/user/moises/directorioWebhdfs/?op=CREATE&user.name=moises&namenoderpcaddress=namenode:9000&overwrite=false
+Content-Length: 0
+Server: Jetty(6.1.26)
+
+//A CONTINUACIÓN ESCRIBIMOS NUESTRO FICHERO LOCAL EN LA LOCALIZACIÓN (TENIENDO EN CUENTA EL DATANODE Y PUERTO) QUE NOS HA DEVUELTO LA REQUEST ANTERIOR
+moises@zollkron:~$ curl -i -X PUT -T prueba.txt "http://datanode4:50075/webhdfs/v1/user/moises/directorioWebhdfs/prueba.txt?op=CREATE&user.name=moises&namenoderpcaddress=namenode:9000&overwrite=false"
+HTTP/1.1 100 Continue
+
+HTTP/1.1 201 Created
+Location: hdfs://namenode:9000/user/moises/directorioWebhdfs/prueba.txt
+Content-Length: 0
+Connection: close
+
+//** POR ÚLTIMO, Y AUNQUE NO SE PIDA EXPRESAMENTE EN EL ENUNCIADO DE LA PRÁCTICA, PROBAMOS A ABRIR EL FICHERO MEDIANTE WEBHDFS PARA COMPROBAR QUE SE HA ENVIADO CORRECTAMENTE **//
+moises@zollkron:~$ curl -i -L "http://NameNode:50070/webhdfs/v1/user/moises/directorioWebhdfs/prueba.txt?op=OPEN&user.name=moises"
+HTTP/1.1 307 TEMPORARY_REDIRECT
+Cache-Control: no-cache
+Expires: Sat, 19 Nov 2016 23:25:12 GMT
+Date: Sat, 19 Nov 2016 23:25:12 GMT
+Pragma: no-cache
+Expires: Sat, 19 Nov 2016 23:25:12 GMT
+Date: Sat, 19 Nov 2016 23:25:12 GMT
+Pragma: no-cache
+Set-Cookie: hadoop.auth="u=moises&p=moises&t=simple&e=1479633912864&s=mq1hR9P8tJzBlL8re4DNMLf4ZGs="; Path=/; Expires=dom, 20-nov-2016 09:25:12 GMT; HttpOnly
+Location: http://datanode1:50075/webhdfs/v1/user/moises/directorioWebhdfs/prueba.txt?op=OPEN&user.name=moises&namenoderpcaddress=namenode:9000&offset=0
+Content-Type: application/octet-stream
+Content-Length: 0
+Server: Jetty(6.1.26)
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Methods: GET
+Access-Control-Allow-Origin: *
+Content-Type: application/octet-stream
+Connection: close
+Content-Length: 294
+
+Éste es un fichero de prueba para comprobar que efectivamente se envía este fichero desde mi equipo al sistema HDFS 
+de mi clúster HADOOP utilizando webhdfs.
+
+Después de enviarlo probaremos a abrirlo. Si se abre tiene que mostrar el contenido del mismo por la salida estándar.
+
+Moisés F.

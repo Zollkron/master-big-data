@@ -1,0 +1,35 @@
+{
+    "account": "t1ZS8tWmJFxQHPRmw1XqVcSVeTYcEmJAjNj",
+    "unconfirmed_balance": "0.00975055",
+    "balance": "0.00305978",
+    "hashrate": "1099.8",
+    "avgHashrate": {
+        "h1": "1142.1",
+        "h3": "1030.9",
+        "h6": "1050.5",
+        "h12": "1041.8",
+        "h24": "1050.5"
+    },
+    "workers": [
+        {
+            "id": "Zollkron",
+            "hashrate": "705.0",
+            "lastShare": 1485610396,
+            "avg_h1": "714.4",
+            "avg_h3": "607.9",
+            "avg_h6": "647.0",
+            "avg_h12": "648.6",
+            "avg_h24": "656.4"
+        },
+        {
+            "id": "Drakon-Alunt",
+            "hashrate": "394.8",
+            "lastShare": 1485610438,
+            "avg_h1": "427.7",
+            "avg_h3": "423.0",
+            "avg_h6": "403.4",
+            "avg_h12": "393.2",
+            "avg_h24": "394.0"
+        }
+    ]
+}
