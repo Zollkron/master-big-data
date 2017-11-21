@@ -1,0 +1,96 @@
+<Schema name="FacultatUM" description="Esquema de FacultatUM">
+  <Cube name="FacultatUM" visible="true" cache="false" enabled="true">
+    <Table name="fact_calificaciones" schema="dw_facultatum" alias="FACT">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_titulacion" highCardinality="false" name="Titulacion" caption="Titulaci&#243;n" description="Dimensi&#243;n Titulaci&#243;n">
+      <Hierarchy name="Titulacion" visible="true" hasAll="true" allMemberCaption="AllTitulaciones" allLevelName="AllLevels" primaryKey="pk_titulacion" caption="Titulaci&#243;n">
+        <Table name="dim_titulacion" schema="dw_facultatum">
+        </Table>
+        <Level name="Descripcion" visible="true" table="dim_titulacion" column="descripcion" ordinalColumn="descripcion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Descripci&#243;n">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_tiempo" highCardinality="false" name="Tiempo" caption="Tiempo" description="Dimensi&#243;n Tiempo">
+      <Hierarchy name="Tiempo" visible="true" hasAll="true" allMemberCaption="AllTiempos" primaryKey="pk_tiempo" caption="Tiempo">
+        <Table name="dim_tiempo" schema="dw_facultatum">
+        </Table>
+        <Level name="CursoAcademico" visible="true" table="dim_tiempo" column="curso_academico" ordinalColumn="curso_academico" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="CursoAcademico">
+        </Level>
+        <Level name="Convocatoria" visible="true" table="dim_tiempo" column="convocatoria" ordinalColumn="convocatoria" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_alumno" highCardinality="false" name="Alumno" caption="Alumno" description="Dimensi&#243;n Alumno">
+      <Hierarchy name="Alumno" visible="true" hasAll="true" allMemberName="All" allMemberCaption="AllAlumnos" allLevelName="AllLevels" primaryKey="pk_alumno" primaryKeyTable="dim_alumno">
+        <Join leftKey="pk_titulacion" rightKey="fk_titulacion">
+          <Table name="dim_titulacion" schema="dw_facultatum">
+          </Table>
+          <Table name="dim_alumno" schema="dw_facultatum">
+          </Table>
+        </Join>
+        <Level name="IdentificadorNatural" visible="true" table="dim_alumno" column="identificador_natural" ordinalColumn="identificador_natural" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IdentificadorNatural">
+        </Level>
+        <Level name="Sexo" visible="true" table="dim_alumno" column="sexo" ordinalColumn="sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Sexo">
+        </Level>
+        <Level name="FechaNacimiento" visible="true" table="dim_alumno" column="fecha_nacimiento" ordinalColumn="fecha_nacimiento" type="Date" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="FechaNacimiento">
+        </Level>
+        <Level name="CodigoPostal" visible="true" table="dim_alumno" column="codigo_postal" ordinalColumn="codigo_postal" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="CodigoPostal">
+        </Level>
+        <Level name="DescripcionAcceso" visible="true" table="dim_alumno" column="descripcion_acceso" ordinalColumn="descripcion_acceso" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Descripci&#243;nAcceso">
+        </Level>
+        <Level name="NotaAcceso" visible="true" table="dim_alumno" column="nota_acceso" ordinalColumn="nota_acceso" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="NotaAcceso">
+        </Level>
+        <Level name="NotaAdmision" visible="true" table="dim_alumno" column="nota_admision" ordinalColumn="nota_admision" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="NotaAdmisi&#243;n">
+        </Level>
+        <Level name="CentroProcedencia" visible="true" table="dim_alumno" column="centro_pau" ordinalColumn="centro_pau" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="CentroProcedencia">
+        </Level>
+        <Level name="DescripcionTitulo" visible="true" table="dim_titulacion" column="descripcion" ordinalColumn="descripcion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="DescripcionTitulo">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_asignatura" highCardinality="false" name="Asignatura" caption="Asignatura" description="Dimensi&#243;n Asignatura">
+      <Hierarchy name="Asignatura" visible="true" hasAll="true" allMemberName="All" allMemberCaption="AllAsignaturas" allLevelName="AllLevels" primaryKey="pk_asignatura">
+        <Table name="dim_asignatura" schema="dw_facultatum">
+        </Table>
+        <Level name="IdentificadorNatural" visible="true" table="dim_asignatura" column="identificador_natural" ordinalColumn="identificador_natural" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IdentificadorNatural">
+        </Level>
+        <Level name="Descripcion" visible="true" table="dim_asignatura" column="descripcion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Descripcion">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_grupo" highCardinality="false" name="Grupo" caption="Grupo" description="Dimensi&#243;n Grupo">
+      <Hierarchy name="Grupo" visible="true" hasAll="true" allMemberName="All" allMemberCaption="AllGrupos" allLevelName="AllLevels" primaryKey="pk_grupo">
+        <Table name="dim_grupo" schema="dw_facultatum">
+        </Table>
+        <Level name="IdentificadorNatural" visible="true" table="dim_grupo" column="identificador_natural" ordinalColumn="identificador_natural" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IdentificadorNatural">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_profesor" highCardinality="false" name="Profesor" caption="Profesor" description="Dimensi&#243;n Profesor">
+      <Hierarchy name="Profesor" visible="true" hasAll="true" allMemberName="All" allMemberCaption="AllProfesores" allLevelName="AllLevels" primaryKey="pk_profesor">
+        <Table name="dim_profesor" schema="dw_facultatum">
+        </Table>
+        <Level name="IdentificadorNatural" visible="true" table="dim_profesor" column="identificador_natural" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IdentificadorNatural">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="fk_acta" highCardinality="false" name="Acta" caption="Acta" description="Dimensi&#243;n Acta">
+      <Hierarchy name="Acta" visible="true" hasAll="true" allMemberName="All" allMemberCaption="AllActas" allLevelName="AllLevels" primaryKey="pk_acta" caption="Acta">
+        <Table name="dim_acta" schema="dw_facultatum">
+        </Table>
+        <Level name="IdentificadorNatural" visible="true" table="dim_acta" column="identificador_natural" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="IdentificadorNatural">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Nota_Cualitativa" column="nota_cualitativa" datatype="Integer" aggregator="distinct count" caption="Nota_Cualitativa" description="Nota Cualitativa" visible="true">
+    </Measure>
+    <Measure name="Nota_Numerica" column="nota_numerica" datatype="Numeric" aggregator="distinct count" caption="Nota_Numerica" visible="true">
+    </Measure>
+    <Measure name="Convocatorias" column="convocatorias" datatype="Integer" aggregator="distinct count" caption="Convocatorias" visible="true">
+    </Measure>
+    <CalculatedMember name="Presentado" caption="Presentado" formula="IIF(ISEMPTY([Measures].[Nota_Cualitativa]), null, 1)" dimension="Measures" visible="true">
+    </CalculatedMember>
+    <CalculatedMember name="Aprobado" caption="Aprobado" formula="IIF([Measures].[Nota_Cualitativa]&#62;0,&#39;true&#39;,&#39;false&#39;)" dimension="Measures" visible="true">
+    </CalculatedMember>
+  </Cube>
+</Schema>

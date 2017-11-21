@@ -1,0 +1,15 @@
+WITH
+SET [~Tiempo_Tiempo.Tiempo_CursoAcademico] AS
+    {[Tiempo].[2015]}
+SET [~Tiempo_Tiempo.Tiempo_Convocatoria] AS
+    Exists({[Tiempo].[Convocatoria].Members}, [~Tiempo_Tiempo.Tiempo_CursoAcademico])
+SET [~COLUMNS_Tiempo_Tiempo.Tiempo] AS
+    Hierarchize({[~Tiempo_Tiempo.Tiempo_CursoAcademico], [~Tiempo_Tiempo.Tiempo_Convocatoria]})
+SET [~COLUMNS_Titulacion_Titulacion.Titulacion] AS
+    {[Titulacion].[MÁSTER UNIVERSITARIO EN TECNOLOGÍAS DE ANÁLISIS DE DATOS MASIVOS: BIG DATA]}
+SET [~ROWS] AS
+    {[Alumno].[IdentificadorNatural].Members}
+SELECT
+NON EMPTY CrossJoin(NonEmptyCrossJoin([~COLUMNS_Tiempo_Tiempo.Tiempo], [~COLUMNS_Titulacion_Titulacion.Titulacion]), {[Measures].[Presentado], [Measures].[Aprobado]}) ON COLUMNS,
+NON EMPTY [~ROWS] ON ROWS
+FROM [FacultatUM]

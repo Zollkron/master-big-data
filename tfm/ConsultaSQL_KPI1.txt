@@ -1,0 +1,12 @@
+SELECT count(*) AS Matriculados, (SELECT count(*) AS Presentados
+  FROM dw_facultatum.fact_calificaciones, dw_facultatum.dim_titulacion, dw_facultatum.dim_tiempo
+  WHERE pk_titulacion = fk_titulacion AND descripcion = 'MÁSTER UNIVERSITARIO EN TECNOLOGÍAS DE ANÁLISIS DE DATOS MASIVOS: BIG DATA' AND
+    pk_tiempo = fk_tiempo AND curso_academico = 2015 AND convocatoria = 'F') AS PresentadosFebrero, (SELECT count(*) AS Presentados
+  FROM dw_facultatum.fact_calificaciones, dw_facultatum.dim_titulacion, dw_facultatum.dim_tiempo
+  WHERE pk_titulacion = fk_titulacion AND descripcion = 'MÁSTER UNIVERSITARIO EN TECNOLOGÍAS DE ANÁLISIS DE DATOS MASIVOS: BIG DATA' AND
+	pk_tiempo = fk_tiempo AND curso_academico = 2015 AND convocatoria = 'J') AS PresentadosJunio, (SELECT count(*) AS Presentados
+  FROM dw_facultatum.fact_calificaciones, dw_facultatum.dim_titulacion, dw_facultatum.dim_tiempo
+  WHERE pk_titulacion = fk_titulacion AND descripcion = 'MÁSTER UNIVERSITARIO EN TECNOLOGÍAS DE ANÁLISIS DE DATOS MASIVOS: BIG DATA' AND
+	pk_tiempo = fk_tiempo AND curso_academico = 2015 AND convocatoria = 'S') AS PresentadosSeptiembre
+  FROM dw_facultatum.fact_calificaciones, dw_facultatum.dim_titulacion
+  WHERE pk_titulacion = fk_titulacion AND descripcion = 'MÁSTER UNIVERSITARIO EN TECNOLOGÍAS DE ANÁLISIS DE DATOS MASIVOS: BIG DATA';
